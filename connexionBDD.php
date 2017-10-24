@@ -1,8 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+//connexion à la base de donnée avec PDO
+
+function connect() {
+    try {
+         $db = new PDO('mysql:host=localhost;dbname=news;charset=utf8', 'root', '');
+          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } 
+        catch (Exception $ex)
+        {
+            die("connexion a MySQL impossible : " .$ex->getMessage());
+        }
+    return $db; 
+}
