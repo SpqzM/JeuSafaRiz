@@ -7,7 +7,7 @@ class Lots {
     private $libelle;
     private $quantite;
     private $prix;
-    private $dateig;
+    private $dateIg;
 }
 {   //  Fonction construct
     function __construct($id, $libelle, $quantite, $prix, $dateig) {
@@ -15,7 +15,7 @@ class Lots {
         $this->libelle = $libelle;
         $this->quantite = $quantite;
         $this->prix = $prix;
-        $this->dateig = $dateig;
+        $this->dateIg = $dateig;
     }
 //   Getter et Setter 
     function getId() {
@@ -35,7 +35,7 @@ class Lots {
     }
 
     function getDateig() {
-        return $this->dateig;
+        return $this->dateIg;
     }
 
     function setId($id) {
@@ -55,7 +55,7 @@ class Lots {
     }
 
     function setDateig($dateig) {
-        $this->dateig = $dateig;
+        $this->dateIg = $dateig;
     }
 
    
