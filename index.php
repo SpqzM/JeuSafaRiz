@@ -10,7 +10,7 @@
         </header>
         <section class="row">
             <div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' id="button">
-                <a href="inscription.php" type="button" class="btn btn-primary btn-lg">JOUER</a>
+                <a href="inscription.php" type="button" class="btn btn-form btn-lg">JOUER</a>
             </div>
         </section>
      </div>
