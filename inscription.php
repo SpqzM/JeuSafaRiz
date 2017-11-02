@@ -1,48 +1,43 @@
 
-<?php 
+<?php
+include 'views/head.php';
 require 'Class/autoload.php';
 require 'connexionBDD.php';
 
 $db = connect();
 $manager = new participantsManager($db);
 
-if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
-        && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) )
-{
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
-    $email= $_POST['email'];
-    $cp= $_POST['cp'];
-    $ville= $_POST['ville'];
-    $adresse= $_POST['adresse'];
+    $email = $_POST['email'];
+    $cp = $_POST['cp'];
+    $ville = $_POST['ville'];
+    $adresse = $_POST['adresse'];
     $telephone = $_POST['tel'];
-    
-    if ($telephone == ""){
-        $telephone = NULL; 
+
+    if ($telephone == "") {
+        $telephone = NULL;
     }
     $participant = new Participants(array(
-                        'nom'=> $nom,
-                        'prenom' =>$prenom,
-                        'adresse' => $adresse,
-                        'cp' => $cp,
-                        'ville' => $ville,
-                        'telephone' => $telephone,
-                        'email' => $email));
-    
-    $manager->add($participant);
-}   
-?>
-    <div class="container">
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'adresse' => $adresse,
+        'cp' => $cp,
+        'ville' => $ville,
+        'telephone' => $telephone,
+        'email' => $email));
 
+    $manager->add($participant);
+}
+?>
+<div class="container">
+    <div class="row">
     <header class='col-sm-4 col-md-4 col-lg-4'>
         <div id="gagner">Gagner un</div>
         <div id="safariz">SAFA'RIZ</div>
         <div id="camargue">en Camargue</div>
     </header>
-    
-?>
-
-<div class="row">
         <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="contact-form" method="post" action="inscription.php">
@@ -109,10 +104,8 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>                    
-            </div>
-        </div>
-        <?php include '../views/footer.php'; ?>
+</div>
+</div>
+<?php include 'views/footer.php'; ?>
