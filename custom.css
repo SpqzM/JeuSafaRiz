@@ -8,7 +8,8 @@ body
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    font-family: 'Lato';   
+    font-family: 'Lato';
+    color: #000;    
 }
 
 .row
@@ -107,6 +108,95 @@ footer {
 
 .center {
     text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    font-family: Montserrat,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+p {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.6em;
+}
+
+a {
+    color: #5175A9;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #5175A9;
+    outline-style: none;  /* enleve les pointilles apres le click */
+}
+
+/** Inscription **/
+
+.boxed-grey{
+    background-color: #5175A9;
+    padding: 10px 40px 40px;
+    margin: 10px 0px 40px;        
+}
+form#contact-form .form-group label {
+	text-align: left !important;
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 12px;
+}
+form#contact-form input,form#contact-form textarea {
+	border-radius: 0;
+	border: 1px solid #eee;
+  -webkit-box-shadow: none;
+          box-shadow:  none;
+}
+
+form#contact-form input:focus,form#contact-form textarea:focus{
+	border-color: #5175A9;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+.input-group-addon {
+  background-color: #fefefe;
+  border: 1px solid #eee;
+  border-radius: 0;
+}
+
+/* Boutons */
+
+.btn {
+    border-radius: 0;
+    text-transform: uppercase;
+    font-family: Montserrat,sans-serif;
+    font-weight: 400;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  text-decoration: none;
+} 
+
+.btn-form {
+  color: #fff;
+  background-color: #5175A9;
+  border-color: #5175A9;
+  
 }
 
 /* COLORS */

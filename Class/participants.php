@@ -13,15 +13,20 @@ class Participants {
     private $email;
     
     //Constructeur
-    function __construct($id, $nom, $prenom, $adresse, $cp, $ville, $telephone, $email) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->adresse = $adresse;
-        $this->cp = $cp;
-        $this->ville = $ville;
-        $this->telephone = $telephone;
-        $this->email = $email;
+    public function __construct(array $tuple=[]){
+        if(!empty($tuple)){
+        $this->hydrate($tuple);
+        }
+    }
+    
+    public function hydrate(array $tuple){
+    //construction dynamique du setter
+    foreach ($tuple as $key => $value){
+        $method = 'set'.ucfirst($key);
+        if (method_exists($this, $method)){
+        $this->$method($value);
+        }
+    }
     }
     
     // Getters et setters

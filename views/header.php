@@ -7,5 +7,5 @@
                 <div id="camargue">en Camargue</div>
             </header>
         </div>
-</div>
+
     
