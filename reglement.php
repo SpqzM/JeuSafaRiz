@@ -3,11 +3,11 @@
     include 'views/head.php'; 
     include 'views/header.php';
 ?>
-                <section class="col-sm-8">
+
                     <?php
                     // put your code here for the règlement
                     ?>
-<div class="row">
+
                 <div class="col-md-8">
                     <div class="boxed-grey">
                         <h3>Réglement du jeu Safa'Riz</h3>                    

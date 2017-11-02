@@ -1,11 +1,9 @@
 
 <?php 
-require 'autoload.php';
+require 'Class/autoload.php';
 require 'connexionBDD.php';
-require './participants.php';
-require './participantsManager.php';
 
-$db = connexionBDD();
+$db = connect();
 $manager = new participantsManager($db);
 
 if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
@@ -18,7 +16,10 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
     $ville= $_POST['ville'];
     $adresse= $_POST['adresse'];
     $telephone = $_POST['tel'];
-
+    
+    if ($telephone == ""){
+        $telephone = NULL; 
+    }
     $participant = new Participants(array(
                         'nom'=> $nom,
                         'prenom' =>$prenom,
@@ -33,10 +34,7 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
     include '../views/header.php';
     
 ?>
-                <section class="col-sm-8">
-                    <?php
-                    // put your code here for the registration form
-                    ?>
+
 <div class="row">
         <div class="col-md-8">
             <div class="boxed-grey">
@@ -65,7 +63,7 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
                             <div class="form-group">
                                 <label for="cp">CP <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" placeholder="Entrer sujet" required="required" />
+                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" placeholder="Entrer code postal" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +106,6 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
 
         </div>
     </div>                    
-                </section>
             </div>
         </div>
         <?php include '../views/footer.php'; ?>

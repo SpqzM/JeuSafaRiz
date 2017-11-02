@@ -3,12 +3,8 @@
 
 include 'views/header.php';
 include 'views/head.php'; ?>
-                <section class="col-sm-8">
-                    <?php
-                    // put your code here for the contact
-                    ?>
-<div class="row">
-        <div class="col-md-7">
+
+        <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="contact-form" method="post">
                     <h3>Contact</h3>                    
@@ -61,8 +57,6 @@ include 'views/head.php'; ?>
 
             			
         </div>
-    </div>                    
-                </section>
             </div>
         </div>
         <?php include 'views/footer.php'; ?>
