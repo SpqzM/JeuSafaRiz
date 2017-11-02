@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/* STRUCTURE */
+body
+{
+    background-image: url('img/cheval.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Lato';   
+}
+
+.row
+{
+    margin-left: 0px;
+    width: 100%;
+}
+
+.container-fluid {
+    margin-top: 50px;
+}
+
+/* HEADER */
+
+header {
+    margin-top: 50px;
+}
+
+#button
+{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#gagner
+{
+    -webkit-transform : rotate(4deg);
+    display: inline-block;
+    border-style: ridge;
+    border-color: midnightblue;
+    color: #ECE9F0;
+    border-width: 4px;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 30px;
+    background-color: #90ABD6;
+    padding: 10px;
+}
+
+#safariz
+{
+    -webkit-transform : rotate(-6deg);
+    -webkit-transform-style: preserve-3d;
+    display: inline-block;
+    color: #ECE9F0;
+    border-style: ridge;
+    border-color: midnightblue;
+    border-width: 4px;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 50px;
+    background-color: #A5946A;
+    padding: 20px 10px;
+}
+
+#camargue
+{
+    -webkit-transform : rotate(4deg);
+    display: inline-block;
+    border-style: ridge;
+    border-color: midnightblue;
+    color: #ECE9F0;
+    border-width: 4px;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 30px;
+    background-color: #90ABD6;
+    padding: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    background: rgba(247, 249, 251, 0.7);
+}
+
+/* NAV */
+
+.navbar-nav {
+    text-align: right;
+}
+
+.navbar > .container, .navbar > .container-fluid {
+    justify-content: flex-end;
+}
+
+.btn-lg {
+    font-size: 2.25rem;
+}
+
+
+/* UTILITIES */
+
+.img-responsive {
+    display: inline-block;
+    width: 120px;
+    height: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+/* COLORS */
+
+/* BLANC #ECE9F0 */
+
+/* BLEU CLAIR #90ABD6 */
+
+/* BLEU FONCE #5175A9 */
+
+/* MARRON CLAIR #A5946A */
+
+/* MARRON FONCE #765F3C */
