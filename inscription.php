@@ -41,7 +41,35 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
         <div class="col-md-8">
             <div class="boxed-grey">
-                <form id="contact-form" method="post" action="inscription.php">
+                <form id="contact-form" method="post" action="inscription.php"><script>
+            
+        $(document).ready(function(){
+    
+    var $nom = $('#nom'),
+        $prenom = $('#prenom'),
+        $email = $('#email'),
+        $envoi = $('#envoi'),
+        $cp = $('#cp'),
+        $ville = $('ville');
+        $tel = $('tel');
+        $champ = $('.champ');
+
+    $tel.keyup(function(){
+        if(Math.floor(tel) == id && $.isNumeric(tel)) { // si le numéro n'est pas un numéro
+            $(this).css({ // on rend le champ rouge
+                borderColor : 'red',
+	        color : 'red'
+            });
+         }
+         else{
+             $(this).css({ // si tout est bon, on le rend vert
+	         borderColor : 'green',
+	         color : 'green'
+	     });
+         }
+    });
+    });
+                        </script>
                     <h5>Inscrivez-vous ci-dessous :</h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
@@ -95,7 +123,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="col-md-12">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="reglement">
-                                    J'accepte <a href="reglement.php"> le réglement du jeu</a> *
+                                    J'accepte <a href="reglement.php" target="_blank"> le réglement du jeu</a> *
                                 </label>
                             </div>
                         </div>
