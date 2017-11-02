@@ -1,9 +1,11 @@
-
-<?php 
-
-include 'views/header.php';
-include 'views/head.php'; ?>
-
+<?php include 'views/head.php'; ?>
+<div class="container">
+    <div class="row">
+        <header class='col-sm-4 col-md-4 col-lg-4'>
+            <div id="gagner">Gagner un</div>
+            <div id="safariz">SAFA'RIZ</div>
+            <div id="camargue">en Camargue</div>
+        </header>
         <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="contact-form" method="post">
@@ -36,11 +38,11 @@ include 'views/head.php'; ?>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-		                <label for="sujet">Sujet</label>
+                                <label for="sujet">Sujet</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="sujet" placeholder="Entrer sujet" required="required" />
                                 </div>
-	                    </div>                              
+                            </div>                              
                             <div class="form-group">
                                 <label for="message">Message</label>
                                 <textarea name="message" id="message" class="form-control" rows="8" cols="30" required="required"
@@ -54,9 +56,7 @@ include 'views/head.php'; ?>
                     </div>
                 </form>
             </div>
-
-            			
         </div>
-            </div>
-        </div>
-        <?php include 'views/footer.php'; ?>
+    </div>
+</div>
+<?php include 'views/footer.php'; ?>
