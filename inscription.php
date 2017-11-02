@@ -30,7 +30,14 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
     
     $manager->add($participant);
 }   
-    include '../views/header.php';
+?>
+    <div class="container">
+
+    <header class='col-sm-4 col-md-4 col-lg-4'>
+        <div id="gagner">Gagner un</div>
+        <div id="safariz">SAFA'RIZ</div>
+        <div id="camargue">en Camargue</div>
+    </header>
     
 ?>
                 <section class="col-sm-8">
