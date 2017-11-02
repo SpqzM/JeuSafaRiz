@@ -1,5 +1,6 @@
 
 <?php
+include 'views/head.php';
 require 'Class/autoload.php';
 require 'connexionBDD.php';
 
@@ -31,16 +32,13 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 }
 ?>
 <div class="container">
-
+    <div class="row">
     <header class='col-sm-4 col-md-4 col-lg-4'>
         <div id="gagner">Gagner un</div>
         <div id="safariz">SAFA'RIZ</div>
         <div id="camargue">en Camargue</div>
     </header>
 
-
-
-    <div class="row">
         <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="contact-form" method="post" action="inscription.php">
@@ -107,10 +105,9 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>                    
 </div>
 </div>
-<?php include '../views/footer.php'; ?>
+<?php include 'views/footer.php'; ?>
+
