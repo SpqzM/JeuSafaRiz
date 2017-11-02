@@ -4,8 +4,6 @@
    require('PHPMailer-FE_v4.11/_lib/class.phpmailer.php');
  
         $mail = new PHPmailer();
-     
-       
         $mail->From='sylvainprat75@gmail.com';
         $mail->AddAddress('sylvainprat75@gmail.com');
         $mail->AddReplyTo('sylvainprat75@gmail.com');     
