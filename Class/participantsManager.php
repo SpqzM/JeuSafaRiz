@@ -12,27 +12,13 @@
  * @author PC200
  */
 class participantsManager {
-    //put your code here
-    
-     /**
-     * Attribut contenant l'instance représentant la BDD.
-     * @type PDO
-     */
     private $db;
 
-    /**
-     * Constructeur étant chargé d'enregistrer l'instance de PDO dans l'attribut $db.
-     * @param $db PDO Le DAO
-     * @return void
-     */
     public function __construct(PDO $db) {
         $this->db = $db;
     }
 
-    /**
-     * @see NewsManager::add()
-     */
-    protected function add(Participants $participants) {
+    public function add(Participants $participants) {
         $requete = $this->db->prepare('INSERT INTO participants (NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, EMAIL )'
                 . 'VALUES(:nom, :prenom, :adresse, :cp, :ville, :telephone, :email)');
         $requete->bindValue(':nom', $participants->getNom());
@@ -44,10 +30,5 @@ class participantsManager {
         $requete->bindValue(':email', $participants->getEmail());
         $requete->execute();
     }
-    
-
-    /**
-     * @see NewsManager::update()
-     */
 }
 

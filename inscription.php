@@ -1,43 +1,44 @@
 
-<?php 
-require 'autoload.php';
+<?php
+include 'views/head.php';
+require 'Class/autoload.php';
 require 'connexionBDD.php';
-require './participants.php';
-require './participantsManager.php';
 
-$db = connexionBDD();
+$db = connect();
 $manager = new participantsManager($db);
 
-if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
-        && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) )
-{
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
-    $email= $_POST['email'];
-    $cp= $_POST['cp'];
-    $ville= $_POST['ville'];
-    $adresse= $_POST['adresse'];
+    $email = $_POST['email'];
+    $cp = $_POST['cp'];
+    $ville = $_POST['ville'];
+    $adresse = $_POST['adresse'];
     $telephone = $_POST['tel'];
 
+    if ($telephone == "") {
+        $telephone = NULL;
+    }
     $participant = new Participants(array(
-                        'nom'=> $nom,
-                        'prenom' =>$prenom,
-                        'adresse' => $adresse,
-                        'cp' => $cp,
-                        'ville' => $ville,
-                        'telephone' => $telephone,
-                        'email' => $email));
-    
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'adresse' => $adresse,
+        'cp' => $cp,
+        'ville' => $ville,
+        'telephone' => $telephone,
+        'email' => $email));
+
     $manager->add($participant);
-}   
-    include '../views/header.php';
-    
+}
 ?>
-                <section class="col-sm-8">
-                    <?php
-                    // put your code here for the registration form
-                    ?>
-<div class="row">
+<div class="container">
+    <div class="row">
+    <header class='col-sm-4 col-md-4 col-lg-4'>
+        <div id="gagner">Gagner un</div>
+        <div id="safariz">SAFA'RIZ</div>
+        <div id="camargue">en Camargue</div>
+    </header>
+
         <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="contact-form" method="post" action="inscription.php">
@@ -65,7 +66,7 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
                             <div class="form-group">
                                 <label for="cp">CP <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" placeholder="Entrer sujet" required="required" />
+                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" placeholder="Entrer code postal" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -104,11 +105,9 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>                    
-                </section>
-            </div>
-        </div>
-        <?php include '../views/footer.php'; ?>
+</div>
+</div>
+<?php include 'views/footer.php'; ?>
+

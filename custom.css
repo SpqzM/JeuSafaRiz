@@ -85,12 +85,8 @@ footer {
 
 /* NAV */
 
-.navbar-nav {
-    text-align: right;
-}
-
-.navbar > .container, .navbar > .container-fluid {
-    justify-content: flex-end;
+.navbar {
+    margin-left: 3em;
 }
 
 .btn-lg {
@@ -145,7 +141,7 @@ a:focus {
 /** Inscription **/
 
 .boxed-grey{
-    background-color: #5175A9;
+    background-color: #eee;
     padding: 10px 40px 40px;
     margin: 10px 0px 40px;        
 }
