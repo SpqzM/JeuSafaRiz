@@ -1,7 +1,7 @@
 
 <?php
 include 'views/head.php';
-/*require 'Class/autoload.php';
+require 'Class/autoload.php';
 require 'connexionBDD.php';
 
 $db = connect();
@@ -29,7 +29,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'email' => $email));
 
     $manager->add($participant);
-}*/
+}
 ?>
 <div class="container">
     <div class="row">
@@ -99,10 +99,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6" id="feedback">
-                        </div>
+                        
                         <div class="col-md-6">
+                            
                             <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
+                        </div>
+                        <div class="col-md-6" id="feedback">
                         </div>
                     </div>
                 </form>
