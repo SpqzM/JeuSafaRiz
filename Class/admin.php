@@ -1,6 +1,6 @@
 <?php
 
-class admin {
+class admin {    
     //    Déclaration des attributs
     private $id;
     private $login;
@@ -8,11 +8,25 @@ class admin {
 
 }
 {   //  Fonction construct
-    function __construct($id, $login, $mdp) {
-        $this->id = $id;
+    function __construct($login, $mdp) {
         $this->login = $login;
         $this->mdp = $mdp;
-
 }
+    function getLogin() {
+        return $this->login;
+    }
+
+    function getMdp() {
+        return $this->mdp;
+    }
+
+    function setLogin($login) {
+        $this->login = $login;
+    }
+
+    function setMdp($mdp) {
+        $this->mdp = $mdp;
+    }
+
 }
 ?>

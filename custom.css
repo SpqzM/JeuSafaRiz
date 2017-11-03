@@ -197,6 +197,10 @@ form#contact-form input:focus,form#contact-form textarea:focus{
   
 }
 
+.errorLogin{
+    color:#cc0000;
+}
+
 /* COLORS */
 
 /* BLANC #ECE9F0 */
