@@ -197,6 +197,22 @@ form#contact-form input:focus,form#contact-form textarea:focus{
   
 }
 
+.error {
+	color: crimson;
+    border: solid 1px crimson;
+}
+
+.valid {
+    color: forestgreen;
+    border: solid 1px forestgreen;
+}
+
+#feedback {
+    color: crimson;
+    font-weight: bold;
+}
+
+
 /* COLORS */
 
 /* BLANC #ECE9F0 */

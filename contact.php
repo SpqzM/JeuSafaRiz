@@ -9,39 +9,12 @@
         </header>
         <div class="col-md-8">
             <div class="boxed-grey">
-                <form id="contact-form" method="post" action="contact.php">
-                    <script>
+                <form id="contact-form" method="post">
 
-                        $(document).ready(function () {
-
-                            var $nom = $('#nom'),
-                                    $prenom = $('#prenom'),
-                                    $email = $('#email'),
-                                    $envoi = $('#envoi'),
-                                    $cp = $('#cp'),
-                                    $ville = $('ville');
-                            $tel = $('tel');
-                            $champ = $('.champ');
-
-                            $tel.keyup(function () {
-                                if (Math.floor(tel) == id && $.isNumeric(tel)) { // si le numéro n'est pas un numéro
-                                    $(this).css({// on rend le champ rouge
-                                        borderColor: 'red',
-                                        color: 'red'
-                                    });
-                                } else {
-                                    $(this).css({// si tout est bon, on le rend vert
-                                        borderColor: 'green',
-                                        color: 'green'
-                                    });
-                                }
-                            });
-                        });
-                    </script>
                     <h3>Contact</h3>
                     <h4>Besoin de renseignement complémentaires ? </h4>  
                     <p>Tous les champs marqués d'une * sont obligatoires</p>                    
-                        <div class="row">
+                    <div class="row">
                         <div class="col-md-6 ">                                       
                             <div class="form-group">
                                 <label for="nom"> Nom</label>
@@ -75,7 +48,7 @@
                             </div>                              
                             <div class="form-group">
                                 <label for="texte">Message</label>
-                                <textarea name="message" id="message" name="texte" class="form-control" rows="8" cols="30" required="required"
+                                <textarea name="texte" id="texte" class="form-control" rows="8" cols="30" required="required"
                                           placeholder="Message"></textarea>
                             </div>
                         </div>
@@ -91,25 +64,27 @@
 </div>
 
 <?php
-
-var_dump($email);
-echo $texte;
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['texte'])) {
+
+
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $sujet = $_POST['sujet'];
     $texte = $_POST['texte'];
+    $telephone = $_POST['tel'];
 
 
     if ($telephone == "") {
         $telephone = NULL;
+    } else {
+        $telephone = $_POST['tel'];
     }
-    
+
     $destinataire = 'safarizgame@gmail.com';
 // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $email;
-    $expediteurnom = $nom." ".$prenom;
+    $expediteurnom = $nom . " " . $prenom;
 
     $objet = $sujet;
 
@@ -126,11 +101,11 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             . '<div style="width: 100%; text-align: center;">'
             . $texte . '</div></body></html>';
 
-    
+
     if (mail($destinataire, $objet, $message, $headers)) {
-        echo '<script language="javascript">alert("Votre message a bien été envoyé ");</script>';
+        echo '<script type="text/javascript">alert("Votre message a bien été envoyé ");</script>';
     } else { // Non envoyé
-        echo '<script language="javascript">alert("Votre message n\'a pas pu être envoyé");</script>';
+        echo '<script type="text/javascript">alert("Votre message n\'a pas pu être envoyé");</script>';
     }
 }
 include 'views/footer.php';
