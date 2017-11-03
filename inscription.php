@@ -30,29 +30,37 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
     $manager->add($participant);
     
-    $destinataire = 'safariz@yopmail.com';
+    $destinataire = 'safarizgame@gmail.com';
     // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
-    $expediteur = $_POST['email'];
+    $expediteurmail = $participant->getEmail();
+    $expediteurnom = $participant->getNom();
      
-    $objet = "Inscription de" .$_POST['name'];
+    $objet = "Inscription de " .$expediteurnom;
      
-    $headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
-    $headers .= 'Content-type: text/html; charset=ISO-8859-1'."\n"; // l'en-tete Content-type pour le format HTML
-    $headers .= 'To: '.$destinataire."\n"; // Mail de reponse
-    $headers .= 'From: "Nom_de_destinataire"<'.$expediteur.'>'."\n"; // Expediteur
+    $headers  = 'MIME-Version: 1.0' . "\r\n"; // Version MIME
+    $headers .= 'Content-type: text/html; charset=utf-8'."\r\n"; // l'en-tete Content-type pour le format HTML
+    $headers .= 'Content-Transfer-Encoding: 8bit'."\r\n";
+    $headers .= 'To: Safariz <'.$destinataire.'>'."\r\n"; // Mail de reponse
+    $headers .= 'X-Mailer: PHP/' . phpversion()."\r\n";
+    $headers .= 'X-Priority: 1'."\r\n"; 
+    $headers .= 'From: '.$expediteurnom.'<'.$expediteurmail.'>'."\r\n"; // Expediteur
+    $headers .= 'Reply-to: '.$expediteurnom.'<'.$expediteurmail.'>'."\r\n"; // Expediteur
      
-    $message =  '<div style="width: 100%; text-align: center; font-weight: bold"> Bonjour '.$_POST['name'].'!<br>
-                    '.$_POST['message'].'</div>';
-     
+    $message =  '<html><body><h1>'.$objet.'</h1>'
+            . '<div style="width: 100%; text-align: center;">'
+            . 'Bonjour '.$expediteurnom.'!<br>'
+            . 'Message générique</div></body></html>';
+//     var_dump($participant);
+//     echo $destinataire."-".$objet."-".$message."-".$headers;
     if(mail($destinataire, $objet, $message, $headers))
     {
-        echo '<script languag="javascript" >alert("Votre message a bien été envoyé ");</script>';
+        echo '<script language="javascript" >alert("Votre participation a été envoyée ");</script>';
     }
     else // Non envoyé
     {
-        echo '<script languag="javascript">alert("Votre message n\'a pas pu être envoyé");</script>';
+        echo '<script language="javascript">alert("Votre participation n\'a pas pu être envoyée");</script>';
     }
-    header('Location: monformulaire.php');
+    //header('Location: inscription.php');
 }
 ?>
 <div class="container">
@@ -65,7 +73,35 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
         <div class="col-md-8">
             <div class="boxed-grey">
-                <form id="contact-form" method="post" action="inscription.php">
+                <form id="contact-form" method="post" action="inscription.php"><script>
+            
+        $(document).ready(function(){
+    
+    var $nom = $('#nom'),
+        $prenom = $('#prenom'),
+        $email = $('#email'),
+        $envoi = $('#envoi'),
+        $cp = $('#cp'),
+        $ville = $('ville');
+        $tel = $('tel');
+        $champ = $('.champ');
+
+    $tel.keyup(function(){
+        if(Math.floor(tel) == id && $.isNumeric(tel)) { // si le numéro n'est pas un numéro
+            $(this).css({ // on rend le champ rouge
+                borderColor : 'red',
+	        color : 'red'
+            });
+         }
+         else{
+             $(this).css({ // si tout est bon, on le rend vert
+	         borderColor : 'green',
+	         color : 'green'
+	     });
+         }
+    });
+    });
+                        </script>
                     <h5>Inscrivez-vous ci-dessous :</h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
@@ -119,7 +155,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="col-md-12">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="reglement">
-                                    J'accepte <a href="reglement.php"> le réglement du jeu</a> *
+                                    J'accepte <a href="reglement.php" target="_blank"> le réglement du jeu</a> *
                                 </label>
                             </div>
                         </div>
