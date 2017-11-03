@@ -30,7 +30,9 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
     $manager->add($participant);
 
+
 //Envoi de mail après inscriptions
+
     $destinataire = 'safarizgame@gmail.com';
     // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $participant->getEmail();
@@ -121,7 +123,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6"> 
                             <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
                         </div>
                         <div class="col-md-6" id="feedback">
