@@ -30,13 +30,13 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
     $manager->add($participant);
 
-
+//Envoi de mail après inscriptions
     $destinataire = 'safarizgame@gmail.com';
     // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $participant->getEmail();
     $expediteurnom = $participant->getNom();
 
-    $objet = "Inscription de " . $expediteurnom;
+    $objet = "Inscription de " . $expediteurnom . " au tirage SafaRiz";
 
     $headers = 'MIME-Version: 1.0' . "\r\n"; // Version MIME
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n"; // l'en-tete Content-type pour le format HTML
@@ -48,16 +48,9 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $headers .= 'Reply-to: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
 
     $message = '<html><body><h1>' . $objet . '</h1>'
-            . '<div style="width: 100%; text-align: center;">'
-            . 'Bonjour ' . $expediteurnom . '!<br>'
-            . 'Message générique</div></body></html>';
-//     var_dump($participant);
-//     echo $destinataire."-".$objet."-".$message."-".$headers;
-    if (mail($destinataire, $objet, $message, $headers)) {
-        echo '<script language="javascript" >alert("Votre participation a été envoyée ");</script>';
-    } else { // Non envoyé
-        echo '<script language="javascript">alert("Votre participation n\'a pas pu être envoyée");</script>';
-    }
+            . '<div>'
+            . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
+            . '</div></body></html>';
 }
 ?>
 <div class="container">

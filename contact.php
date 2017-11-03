@@ -12,7 +12,7 @@
                 <form id="contact-form" method="post">
 
                     <h3>Contact</h3>
-                    <h4>Besoin de renseignement complémentaires ? </h4>  
+                    <p>Besoin de renseignement complémentaires ? </p>  
                     <p>Tous les champs marqués d'une * sont obligatoires</p>                    
                     <div class="row">
                         <div class="col-md-6 ">                                       
@@ -100,13 +100,6 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $message = '<html><body><h1>' . $sujet . '</h1>'
             . '<div style="width: 100%; text-align: center;">'
             . $texte . '</div></body></html>';
-
-
-    if (mail($destinataire, $objet, $message, $headers)) {
-        echo '<script type="text/javascript">alert("Votre message a bien été envoyé ");</script>';
-    } else { // Non envoyé
-        echo '<script type="text/javascript">alert("Votre message n\'a pas pu être envoyé");</script>';
-    }
 }
 include 'views/footer.php';
 ?>
