@@ -1,7 +1,7 @@
 
 <?php
 include 'views/head.php';
-require 'Class/autoload.php';
+/*require 'Class/autoload.php';
 require 'connexionBDD.php';
 
 $db = connect();
@@ -29,7 +29,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'email' => $email));
 
     $manager->add($participant);
-}
+}*/
 ?>
 <div class="container">
     <div class="row">
@@ -41,35 +41,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
         <div class="col-md-8">
             <div class="boxed-grey">
-                <form id="contact-form" method="post" action="inscription.php"><script>
-            
-        $(document).ready(function(){
-    
-    var $nom = $('#nom'),
-        $prenom = $('#prenom'),
-        $email = $('#email'),
-        $envoi = $('#envoi'),
-        $cp = $('#cp'),
-        $ville = $('ville');
-        $tel = $('tel');
-        $champ = $('.champ');
-
-    $tel.keyup(function(){
-        if(Math.floor(tel) == id && $.isNumeric(tel)) { // si le numéro n'est pas un numéro
-            $(this).css({ // on rend le champ rouge
-                borderColor : 'red',
-	        color : 'red'
-            });
-         }
-         else{
-             $(this).css({ // si tout est bon, on le rend vert
-	         borderColor : 'green',
-	         color : 'green'
-	     });
-         }
-    });
-    });
-                        </script>
+                <form id="registration-form" method="post" action="inscription.php">
                     <h5>Inscrivez-vous ci-dessous :</h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
@@ -122,20 +94,21 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="reglement">
-                                    J'accepte <a href="reglement.php" target="_blank"> le réglement du jeu</a> *
+                                    <input type="checkbox" class="form-check-input" name="reglement" id="reglement">
+                                    J'accepte <a href="reglement.php" target="_blank"> le règlement du jeu</a> *
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-form pull-right" id="btnContact">Valider votre inscription</button>
+                        <div class="col-md-6" id="feedback">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>                    
-</div>
 </div>
 <?php include 'views/footer.php'; ?>
 
