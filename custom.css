@@ -81,6 +81,7 @@ header {
 
 footer {
     background: rgba(247, 249, 251, 0.7);
+    
 }
 
 /* NAV */
@@ -143,7 +144,7 @@ a:focus {
 
 .boxed-grey{
     background-color: #eee;
-    padding: 10px 40px 40px;
+    padding: 30px 40px 40px;
     margin: 10px 0px 40px;  
     background: rgba(247, 249, 251, 0.7);
 }
@@ -194,11 +195,27 @@ form#contact-form input:focus,form#contact-form textarea:focus{
   color: #fff;
   background-color: #5175A9;
   border-color: #5175A9;
+  cursor: pointer;
   
 }
 
 .errorLogin{
     color:#cc0000;
+}
+
+.error {
+	color: crimson;
+    border: solid 1px crimson;
+}
+
+.valid {
+    color: forestgreen;
+    border: solid 1px forestgreen;
+}
+
+#feedback {
+    color: crimson;
+    font-weight: bold;
 }
 
 /* COLORS */

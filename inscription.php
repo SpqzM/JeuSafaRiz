@@ -29,47 +29,47 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'email' => $email));
 
     $manager->add($participant);
+    
+    $destinataire = 'safarizgame@gmail.com';
+    // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
+    $expediteurmail = $participant->getEmail();
+    $expediteurnom = $participant->getNom();
+
+    $objet = "Inscription de " . $expediteurnom;
+
+    $headers = 'MIME-Version: 1.0' . "\r\n"; // Version MIME
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n"; // l'en-tete Content-type pour le format HTML
+    $headers .= 'Content-Transfer-Encoding: 8bit' . "\r\n";
+    $headers .= 'To: Safariz <' . $destinataire . '>' . "\r\n"; // Mail de reponse
+    $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
+    $headers .= 'X-Priority: 1' . "\r\n";
+    $headers .= 'From: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
+    $headers .= 'Reply-to: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
+
+    $message = '<html><body><h1>' . $objet . '</h1>'
+            . '<div style="width: 100%; text-align: center;">'
+            . 'Bonjour ' . $expediteurnom . '!<br>'
+            . 'Message générique</div></body></html>';
+//     var_dump($participant);
+//     echo $destinataire."-".$objet."-".$message."-".$headers;
+    if (mail($destinataire, $objet, $message, $headers)) {
+        echo '<script language="javascript" >alert("Votre participation a été envoyée ");</script>';
+    } else { // Non envoyé
+        echo '<script language="javascript">alert("Votre participation n\'a pas pu être envoyée");</script>';
+    }
 }
 ?>
 <div class="container">
     <div class="row">
-    <header class='col-sm-4 col-md-4 col-lg-4'>
-        <div id="gagner">Gagner un</div>
-        <div id="safariz">SAFA'RIZ</div>
-        <div id="camargue">en Camargue</div>
-    </header>
+        <header class='col-sm-4 col-md-4 col-lg-4'>
+            <div id="gagner">Gagner un</div>
+            <div id="safariz">SAFA'RIZ</div>
+            <div id="camargue">en Camargue</div>
+        </header>
 
         <div class="col-md-8">
             <div class="boxed-grey">
-                <form id="contact-form" method="post" action="inscription.php"><script>
-            
-        $(document).ready(function(){
-    
-    var $nom = $('#nom'),
-        $prenom = $('#prenom'),
-        $email = $('#email'),
-        $envoi = $('#envoi'),
-        $cp = $('#cp'),
-        $ville = $('ville');
-        $tel = $('tel');
-        $champ = $('.champ');
-
-    $tel.keyup(function(){
-        if(Math.floor(tel) == id && $.isNumeric(tel)) { // si le numéro n'est pas un numéro
-            $(this).css({ // on rend le champ rouge
-                borderColor : 'red',
-	        color : 'red'
-            });
-         }
-         else{
-             $(this).css({ // si tout est bon, on le rend vert
-	         borderColor : 'green',
-	         color : 'green'
-	     });
-         }
-    });
-    });
-                        </script>
+                <form id="registration-form" method="post" action="inscription.php">
                     <h5>Inscrivez-vous ci-dessous :</h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
@@ -122,13 +122,15 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="reglement">
-                                    J'accepte <a href="reglement.php" target="_blank"> le réglement du jeu</a> *
+                                    <input type="checkbox" class="form-check-input" name="reglement" id="reglement">
+                                    J'accepte <a href="reglement.php" target="_blank"> le règlement du jeu</a> *
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-form pull-right" id="btnContact">Valider votre inscription</button>
+                        <div class="col-md-6"> 
+                            <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
+                        </div>
+                        <div class="col-md-6" id="feedback">
                         </div>
                     </div>
                 </form>
@@ -136,6 +138,4 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         </div>
     </div>                    
 </div>
-</div>
-<?php include 'views/footer.php'; ?>
-
+<?php include 'views/footer.php' ?>
