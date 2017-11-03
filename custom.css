@@ -199,6 +199,10 @@ form#contact-form input:focus,form#contact-form textarea:focus{
   
 }
 
+.errorLogin{
+    color:#cc0000;
+}
+
 .error {
 	color: crimson;
     border: solid 1px crimson;
@@ -213,8 +217,6 @@ form#contact-form input:focus,form#contact-form textarea:focus{
     color: crimson;
     font-weight: bold;
 }
-
-
 
 /* COLORS */
 

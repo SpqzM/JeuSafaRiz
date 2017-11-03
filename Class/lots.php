@@ -5,16 +5,12 @@ class Lots {
     //    Déclaration des attributs
     private $id;
     private $libelle;
-    private $quantite;
-    private $prix;
     private $dateIg;
 }
 {   //  Fonction construct
-    function __construct($id, $libelle, $quantite, $prix, $dateig) {
+    function __construct($id, $libelle, $dateig) {
         $this->id = $id;
         $this->libelle = $libelle;
-        $this->quantite = $quantite;
-        $this->prix = $prix;
         $this->dateIg = $dateig;
     }
 //   Getter et Setter 
@@ -24,14 +20,6 @@ class Lots {
 
     function getLibelle() {
         return $this->libelle;
-    }
-
-    function getQuantite() {
-        return $this->quantite;
-    }
-
-    function getPrix() {
-        return $this->prix;
     }
 
     function getDateig() {
@@ -44,14 +32,6 @@ class Lots {
 
     function setLibelle($libelle) {
         $this->libelle = $libelle;
-    }
-
-    function setQuantite($quantite) {
-        $this->quantite = $quantite;
-    }
-
-    function setPrix($prix) {
-        $this->prix = $prix;
     }
 
     function setDateig($dateig) {
