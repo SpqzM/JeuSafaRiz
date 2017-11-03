@@ -108,5 +108,8 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         echo '<script type="text/javascript">alert("Votre message n\'a pas pu être envoyé");</script>';
     }
 }
+
+ 
+
 include 'views/footer.php';
 ?>
