@@ -1,74 +1,66 @@
 <?php
 
+class Participations {
 
-class Participations extends Participants{
-    
 //    Déclaration des attributs
     private $id;
     private $dateParticipation;
-    private $dateGain;
     private $resultat;
     private $idLot;
     private $idParticipant;
 
 }
+
 //Fonction construct
-    function __construct($id, $dateParticipation, $dateGain, $resultat, $idLot, $idParticipant) {
-        $this->id = $id;
-        $this->dateParticipation = $dateParticipation;
-        $this->dateGain = $dateGain;
-        $this->resultat = $resultat;
-        $this->idLot = $idLot;
-        $this->idParticipant = $idParticipant;
-    }
+function __construct($id, $dateParticipation, $dateGain, $resultat, $idLot, $idParticipant) {
+    $this->id = $id;
+    $this->dateParticipation = $dateParticipation;
+    $this->resultat = $resultat;
+    $this->idLot = $idLot;
+    $this->idParticipant = $idParticipant;
+}
+
 //Getter et Setter
-    function getId() {
-        return $this->id;
-    }
+function getId() {
+    return $this->id;
+}
 
-    function getDateParticipation() {
-        return $this->dateParticipation;
-    }
+function getDateParticipation() {
+    return $this->dateParticipation;
+}
 
-    function getDateGain() {
-        return $this->dateGain;
-    }
+function getResultat() {
+    return $this->resultat;
+}
 
-    function getResultat() {
-        return $this->resultat;
-    }
+function getIdLot() {
+    return $this->idLot;
+}
 
-    function getIdLot() {
-        return $this->idLot;
-    }
+function getIdParticipant() {
+    return $this->idParticipant;
+}
 
-    function getIdParticipant() {
-        return $this->idParticipant;
-    }
+function setId($id) {
+    $this->id = $id;
+}
 
-    function setId($id) {
-        $this->id = $id;
-    }
+function setDateParticipation($dateParticipation) {
+    $this->dateParticipation = $dateParticipation;
+}
 
-    function setDateParticipation($dateParticipation) {
-        $this->dateParticipation = $dateParticipation;
-    }
+function setDateGain($dateGain) {
+    $this->dateGain = $dateGain;
+}
 
-    function setDateGain($dateGain) {
-        $this->dateGain = $dateGain;
-    }
+function setResultat($resultat) {
+    $this->resultat = $resultat;
+}
 
-    function setResultat($resultat) {
-        $this->resultat = $resultat;
-    }
+function setIdLot($idLot) {
+    $this->idLot = $idLot;
+}
 
-    function setIdLot($idLot) {
-        $this->idLot = $idLot;
-    }
-
-    function setIdParticipant($idParticipant) {
-        $this->idParticipant = $idParticipant;
-    }
-
-   
-
+function setIdParticipant($idParticipant) {
+    $this->idParticipant = $idParticipant;
+}

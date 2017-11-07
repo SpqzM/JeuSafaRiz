@@ -1,4 +1,3 @@
-
 <?php
 include 'views/head.php';
 require 'Class/autoload.php';
@@ -6,6 +5,9 @@ require 'connexionBDD.php';
 
 $db = connect();
 $manager = new participantsManager($db);
+$managerP = new participationsManager($db);
+
+
 
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement'])) {
     $nom = $_POST['nom'];
@@ -27,32 +29,40 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'ville' => $ville,
         'telephone' => $telephone,
         'email' => $email));
+    $limit = $managerP->limit($email);
 
-    $manager->add($participant);
+    if ($email == $limit['email']) {
+        echo "Vous avez déjà  participé";
+    } else {
+        $manager->add($participant);
 
+        //Envoi de mail après inscriptions
+        $debut = 'safarizgame';
+        $fin = '@gmail.com';
+        $mail = $debut . $fin;
+        $destinataire = $mail;
+        // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
+        $expediteurmail = $participant->getEmail();
+        $expediteurnom = $participant->getNom();
+        $expediteurtel = $participants->getTel();
 
-//Envoi de mail aprÃ¨s inscriptions
+        $objet = 'Inscription de ' . $expediteurnom . ' au tirage SafaRiz';
 
-    $destinataire = 'safarizgame@gmail.com';
-    // Pour les champs $expediteur / $copie / $destinataire, sÃ©parer par une virgule s'il y a plusieurs adresses
-    $expediteurmail = $participant->getEmail();
-    $expediteurnom = $participant->getNom();
+        $headers = 'MIME-Version: 1.0' . "\r\n"; // Version MIME
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n"; // l'en-tete Content-type pour le format HTML
+        $headers .= 'Content-Transfer-Encoding: 8bit' . "\r\n";
+        $headers .= 'To: Safariz <' . $destinataire . '>' . "\r\n"; // Mail de reponse
+        $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
+        $headers .= 'X-Priority: 1' . "\r\n";
+        $headers .= 'From: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
+        $headers .= 'Reply-to: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
 
-    $objet = "Inscription de " . $expediteurnom . " au tirage SafaRiz";
-
-    $headers = 'MIME-Version: 1.0' . "\r\n"; // Version MIME
-    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n"; // l'en-tete Content-type pour le format HTML
-    $headers .= 'Content-Transfer-Encoding: 8bit' . "\r\n";
-    $headers .= 'To: Safariz <' . $destinataire . '>' . "\r\n"; // Mail de reponse
-    $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
-    $headers .= 'X-Priority: 1' . "\r\n";
-    $headers .= 'From: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
-    $headers .= 'Reply-to: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
-
-    $message = '<html><body><h1>' . $objet . '</h1>'
-            . '<div>'
-            . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
-            . '</div></body></html>';
+        $message = '<html><body><h1>' . $objet . '</h1>'
+                . '<div>'
+                . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
+                . '</div> son numéro de téléphone est le ' . $expediteurtel . '</body></html>';
+        mail($destinataire, $objet, $message, $headers);
+    }
 }
 ?>
 <div class="container">
@@ -67,7 +77,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             <div class="boxed-grey">
                 <form id="registration-form" method="post" action="inscription.php">
                     <h5>Inscrivez-vous ci-dessous :</h5>
-                    <h6>Tous les champs marquÃ©s d'une * sont obligatoires</h6>
+                    <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -75,8 +85,8 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 <input type="text" class="form-control" name="nom" id="nom" maxlength="48" placeholder="Entrer nom" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="prenom"> PrÃ©nom <em>*</em></label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" maxlength="48" placeholder="Entrer prÃ©nom" required="required" />
+                                <label for="prenom"> Prénom <em>*</em></label>
+                                <input type="text" class="form-control" name="prenom" id="prenom" maxlength="48" placeholder="Entrer prénom" required="required" />
                             </div>
                             <div class="form-group">
                                 <label for="email"> Email <em>*</em></label>
@@ -100,10 +110,10 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="tel"> TÃ©l </label>
+                                <label for="tel"> Tél </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-mobile-phone"></span></span>
-                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer tÃ©lÃ©phone" />
+                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer téléphone" />
                                 </div>
                             </div>
                         </div>
@@ -119,7 +129,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="col-md-12">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="reglement" id="reglement">
-                                    J'accepte <a href="reglement.php" target="_blank"> le rÃ¨glement du jeu</a> *
+                                    J'accepte <a href="reglement.php" target="_blank"> le règlement du jeu</a> *
                                 </label>
                             </div>
                         </div>
