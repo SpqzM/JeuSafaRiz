@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         phone = document.getElementById('tel'),
         cp = document.getElementById('cp'),
         reglement = document.getElementById('reglement'),
+        mdp = document.getElementById('mdp'),
         feedback = document.getElementById('feedback'),
         address = document.getElementById('adresse'),
         town = document.getElementById('ville'),
@@ -91,6 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 error++;
             } else {
                 familyName.classList.add('valid');
+            }
+            if (!(mdp.value)) {
+                mdp.classList.add('error');
+                feedback.innerHTML = "Veuillez entrer le mot de passe";
+                error++;
+            } else {
+                mdp.classList.add('valid');
             }
                 
             if (!reglement.checked) {
