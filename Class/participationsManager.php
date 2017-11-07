@@ -1,17 +1,12 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of participationsManager
- *
- * @author PC200
- */
 class participationsManager {
+
+    private $db;
+
+    public function __construct(PDO $db) {
+        $this->db = $db;
+    }
+
     //Ajouter une participation
     public function addParticipation(Participations $participation) {
         $requete = $this->db->prepare('INSERT INTO participations (DATEPARTICIPATION, IDLOT, IDPARTICIPANT, RESULTAT)'
@@ -21,4 +16,25 @@ class participationsManager {
         $requete->bindValue(':resultat', $participation->getResultat());
         $requete->execute();
     }
+
+    
+    // Affiche le lot gagnant
+    public function libelleLot($idLot,$idParticipant)
+    {
+        $query = 'SELECT LIBELLE FROM lots,participations WHERE lots.ID= participations.IDLOT AND IDLOT=:idLot AND IDPARTICIPANT= :idParticipant';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':idLot', $idLot, PDO::PARAM_INT);
+        $result->bindValue(':idParticipant',$idParticipant, PDO::PARAM_INT);
+        $result->execute();
+        return $result->fetch();
+    }
+    //Limiter la participation Ã  un jour par foyer
+    public function limit($email) {
+        $req = "SELECT email, adresse, cp, ville, participations.ID FROM `participations`, participants WHERE participants.email = :email AND participants.ID = participations.ID AND DATEPARTICIPATION = CURDATE();";
+        $result = $this->db->prepare($req);
+        $result->bindValue(':email', $email);
+        $result->execute();
+        return $result->fetch();
+    }
 }
+

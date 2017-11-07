@@ -7,7 +7,7 @@ require 'connexionBDD.php';
 $db = connect();
 $manager = new participantsManager($db);
 
-if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement'])) {
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) && isset($_POST['mdp'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
@@ -15,6 +15,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $ville = $_POST['ville'];
     $adresse = $_POST['adresse'];
     $telephone = $_POST['tel'];
+    $password = $_POST['mdp'];
 
     if ($telephone == "") {
         $telephone = NULL;
@@ -26,7 +27,8 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'cp' => $cp,
         'ville' => $ville,
         'telephone' => $telephone,
-        'email' => $email));
+        'email' => $email,
+        'mdp' => $password));
 
     $manager->add($participant);
 
@@ -70,7 +72,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         <div class="col-md-8">
             <div class="boxed-grey">
                 <form id="registration-form" method="post" action="inscription.php">
-                    <h5>Inscrivez-vous ci-dessous :</h5>
+                    <h5>Inscrivez-vous ci-dessous ou <a href="connexionParticipant.php">S'identifier</a></h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
                     <div class="row">
                         <div class="col-md-6 ">
@@ -88,7 +90,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                     <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Entrer email" required="required" />
                                 </div>
-                            </div>
+                            </div>                           
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -109,25 +111,34 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                     <span class="input-group-addon"><span class="fa fa-mobile-phone"></span></span>
                                     <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer téléphone" />
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6 ">
                             <div class="form-group">
                                 <label for="adresse">Adresse <em>*</em></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="adresse" id="adresse" maxlength="48" placeholder="Entrer adresse" required="required" />
                                 </div>
+                            </div>                         
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="mdp"> Mot de passe *</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>                                                                   
+                                    <input type="password" class="form-control" name="mdp" id="mdp" maxlength="48" placeholder="Entrer mot de passe" required="required" />                         
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="reglement" id="reglement">
                                     J'accepte <a href="reglement.php" target="_blank"> le règlement du jeu</a> *
                                 </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6"> 
+                            </div>                           
+                        </div>                       
+                        <div class="col-md-12"> 
                             <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
                         </div>
                         <div class="col-md-6" id="feedback">

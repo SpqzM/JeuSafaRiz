@@ -6,14 +6,14 @@ class lotsManager {
         $this->db = $db;
     }
 
-// Affiche le nombre total de lots    
-  public function countLots()
+// Récupère l' id du lot de l'IG en cours   
+  public function lotId($id)
   {
-    $query = 'select COUNT(*) as NB_LOT from lots';
+    $query = 'select id from lots';
     $result = $this->db->prepare($query);
     $result->execute();    
     return $result->fetch();
-  }     
+  }
 }
 
 ?>

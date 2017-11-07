@@ -1,37 +1,38 @@
 <?php
 
 
-class Participations extends Participants{
+class Participations{
     
-//    Déclaration des attributs
+    //Déclaration des attributs
     private $id;
     private $dateParticipation;
-    private $dateGain;
-    private $resultat;
     private $idLot;
     private $idParticipant;
+    private $resultat;
 
-}
-//Fonction construct
-    function __construct($id, $dateParticipation, $dateGain, $resultat, $idLot, $idParticipant) {
-        $this->id = $id;
-        $this->dateParticipation = $dateParticipation;
-        $this->dateGain = $dateGain;
-        $this->resultat = $resultat;
-        $this->idLot = $idLot;
-        $this->idParticipant = $idParticipant;
+    //Constructeur
+    public function __construct(array $tuple=[]){
+        if(!empty($tuple)){
+            $this->hydrate($tuple);
+        }
     }
-//Getter et Setter
+
+    public function hydrate(array $tuple){
+        //construction dynamique du setter
+        foreach ($tuple as $key => $value){
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)){
+                $this->$method($value);
+            }
+        }
+    }
+    //Getter et Setter
     function getId() {
         return $this->id;
     }
 
     function getDateParticipation() {
         return $this->dateParticipation;
-    }
-
-    function getDateGain() {
-        return $this->dateGain;
     }
 
     function getResultat() {
@@ -54,10 +55,6 @@ class Participations extends Participants{
         $this->dateParticipation = $dateParticipation;
     }
 
-    function setDateGain($dateGain) {
-        $this->dateGain = $dateGain;
-    }
-
     function setResultat($resultat) {
         $this->resultat = $resultat;
     }
@@ -69,6 +66,4 @@ class Participations extends Participants{
     function setIdParticipant($idParticipant) {
         $this->idParticipant = $idParticipant;
     }
-
-   
-
+}
