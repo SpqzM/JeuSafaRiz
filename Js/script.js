@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         
     if (submitRegistration) {
-        submitRegistration.addEventListener('click', submitRegistrationForm);
+        submitRegistration.addEventListener('click', submitRegisterForm);
     }
     
     if (submitContact) {
