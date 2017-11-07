@@ -8,7 +8,7 @@ $manager = new participantsManager($db);
 $managerP = new participationsManager($db);
 
 
-
+    // On stocke les infos du participant en variables si tous les champs requis sont remplis
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -21,6 +21,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     if ($telephone == "") {
         $telephone = NULL;
     }
+    // Ajout du participant 
     $participant = new Participants(array(
         'nom' => $nom,
         'prenom' => $prenom,
@@ -30,21 +31,24 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'telephone' => $telephone,
         'email' => $email));
     $limit = $managerP->limit($email);
-
+    
+    // On vÃ©rifie si la personne a dÃ©jÃ  participÃ© au cours de la journÃ©e
     if ($email == $limit['email']) {
-        echo "Vous avez déjà  participé";
+        echo "Vous avez dÃ©jÃ  participÃ©";
     } else {
         $manager->add($participant);
 
-        //Envoi de mail après inscriptions
+        // On sÃ©curise l'adresse mail du destinataire
         $debut = 'safarizgame';
         $fin = '@gmail.com';
         $mail = $debut . $fin;
         $destinataire = $mail;
-        // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
+        
+        // Envoi de mail aprÃ¨s inscriptions
+        // Pour les champs $expediteur / $copie / $destinataire, sï¿½parer par une virgule s'il y a plusieurs adresses
         $expediteurmail = $participant->getEmail();
         $expediteurnom = $participant->getNom();
-        $expediteurtel = $participants->getTel();
+        
 
         $objet = 'Inscription de ' . $expediteurnom . ' au tirage SafaRiz';
 
@@ -57,10 +61,10 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         $headers .= 'From: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
         $headers .= 'Reply-to: ' . $expediteurnom . '<' . $expediteurmail . '>' . "\r\n"; // Expediteur
 
-        $message = '<html><body><h1>' . $objet . '</h1>'
+        $message = '<html><body><h1>' . $objet . '</h1>'//Corps du mail
                 . '<div>'
                 . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
-                . '</div> son numéro de téléphone est le ' . $expediteurtel . '</body></html>';
+                . '</div> son numï¿½ro de tï¿½lï¿½phone est le ' . $expediteurtel . '</body></html>';
         mail($destinataire, $objet, $message, $headers);
     }
 }
@@ -77,7 +81,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             <div class="boxed-grey">
                 <form id="registration-form" method="post" action="inscription.php">
                     <h5>Inscrivez-vous ci-dessous :</h5>
-                    <h6>Tous les champs marqués d'une * sont obligatoires</h6>
+                    <h6>Tous les champs marquï¿½s d'une * sont obligatoires</h6>
                     <div class="row">
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -85,8 +89,8 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 <input type="text" class="form-control" name="nom" id="nom" maxlength="48" placeholder="Entrer nom" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="prenom"> Prénom <em>*</em></label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" maxlength="48" placeholder="Entrer prénom" required="required" />
+                                <label for="prenom"> Prï¿½nom <em>*</em></label>
+                                <input type="text" class="form-control" name="prenom" id="prenom" maxlength="48" placeholder="Entrer prï¿½nom" required="required" />
                             </div>
                             <div class="form-group">
                                 <label for="email"> Email <em>*</em></label>
@@ -110,10 +114,10 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="tel"> Tél </label>
+                                <label for="tel"> Tï¿½l </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-mobile-phone"></span></span>
-                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer téléphone" />
+                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer tï¿½lï¿½phone" />
                                 </div>
                             </div>
                         </div>
@@ -129,7 +133,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="col-md-12">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="reglement" id="reglement">
-                                    J'accepte <a href="reglement.php" target="_blank"> le règlement du jeu</a> *
+                                    J'accepte <a href="reglement.php" target="_blank"> le rï¿½glement du jeu</a> *
                                 </label>
                             </div>
                         </div>

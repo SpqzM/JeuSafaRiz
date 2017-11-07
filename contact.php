@@ -65,8 +65,6 @@
 
 <?php
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['texte'])) {
-
-
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
@@ -74,13 +72,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $texte = $_POST['texte'];
     $telephone = $_POST['tel'];
 
-
     if ($telephone == "") {
         $telephone = NULL;
     } else {
         $telephone = $_POST['tel'];
     }
-
+// On sécurise l'adresse mail du destinataire
     $debut = 'safarizgame';
     $fin = '@gmail.com';
     $mail = $debut . $fin;
@@ -100,9 +97,10 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $headers .= 'From: ' . $nom . '<' . $email . '>' . "\r\n"; // Expediteur
     $headers .= 'Reply-to: ' . $nom . '<' . $email . '>' . "\r\n"; // Expediteur
 
-    $message = '<html><body><h1>' . $sujet . '</h1>'
+    $message = '<html><body><h1>' . $sujet . '</h1>'// Corps du message
             . '<div>'
             . $texte . '</div></body></html>';
+    mail($destinataire, $objet, $message, $headers);
 }
 
 
