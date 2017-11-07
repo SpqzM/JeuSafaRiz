@@ -10,7 +10,6 @@ $errorAuth = "";
 if (isset($_POST['emailP']) && isset($_POST['mdp'])) {
     $email = $_POST['emailP'];
     $mdp = $_POST['mdp'];
-    $m = $mParticipant->verif($mdp);
     if (strlen(trim($email)) > 1 && strlen(trim($mdp)) > 1) {
         $user = $mParticipant->verifParticipant($email, $mdp);
         if ($user) {
