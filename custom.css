@@ -79,32 +79,43 @@ header {
 
 /* FOOTER */
 
-footer {
+footer 
+{
     background: rgba(247, 249, 251, 0.7);
     
 }
 
 /* NAV */
 
-.navbar {
+.navbar 
+{
     margin-left: 3em;
     margin-top: 3em;
 }
 
-.btn-lg {
+.btn-lg 
+{
     font-size: 2.25rem;
 }
 
 
 /* UTILITIES */
 
-.img-responsive {
+.img-responsive 
+{
     display: inline-block;
     width: 120px;
     height: auto;
 }
+#compte_a_rebours
+{
+    color: crimson;
+    word-wrap: break-word;
+    font-size: 20px;
+}
 
-.center {
+.center 
+{
     text-align: center;
 }
 
@@ -120,13 +131,15 @@ h6 {
     font-weight: 700;
     letter-spacing: 1px;
 }
-p {
+p 
+{
     margin: 0 0 20px;
     font-size: 16px;
     line-height: 1.6em;
 }
 
-a {
+a 
+{
     color: #5175A9;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -191,29 +204,32 @@ form#contact-form input:focus,form#contact-form textarea:focus{
   text-decoration: none;
 } 
 
-.btn-form {
+.btn-form
+{
   color: #fff;
   background-color: #5175A9;
   border-color: #5175A9;
   cursor: pointer;
-  
 }
 
 .errorLogin{
     color:#cc0000;
 }
 
-.error {
-	color: crimson;
+.error 
+{
+    color: crimson;
     border: solid 1px crimson;
 }
 
-.valid {
+.valid 
+{
     color: forestgreen;
     border: solid 1px forestgreen;
 }
 
-#feedback {
+#feedback 
+{
     color: crimson;
     font-weight: bold;
 }
