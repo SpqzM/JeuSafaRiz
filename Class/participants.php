@@ -1,7 +1,7 @@
 <?php
 
 class Participants {
-    
+
     // Déclaration des attributs
     private $id;
     private $nom;
@@ -11,6 +11,8 @@ class Participants {
     private $ville;
     private $telephone;
     private $email;
+    private $date_inscription;
+    private $mdp;    
     
     //Constructeur
     public function __construct(array $tuple=[]){
@@ -61,6 +63,14 @@ class Participants {
     function getEmail() {
         return $this->email;
     }
+    
+    function getDate_inscription() {
+        return $this->date_inscription;
+    }
+    
+    function getMdp() {
+        return $this->mdp;
+    }
 
     function setId($id) {
         $this->id = $id;
@@ -93,6 +103,12 @@ class Participants {
     function setEmail($email) {
         $this->email = $email;
     }
-
-
+    
+    function setDate_inscription($date_inscription) {
+        $this->date_inscription = $date_inscription;
+    }
+    
+    function setMdp($mdp) {
+        $this->mdp = $mdp;
+    }
 }

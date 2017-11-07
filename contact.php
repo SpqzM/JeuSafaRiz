@@ -17,15 +17,15 @@
                     <div class="row">
                         <div class="col-md-6 ">                                       
                             <div class="form-group">
-                                <label for="nom"> Nom</label>
+                                <label for="nom"> Nom <em>*</em></label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer nom" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="prenom"> Prénom</label>
+                                <label for="prenom"> Prénom <em>*</em></label>
                                 <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrer prénom" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="email"> Email </label>
+                                <label for="email"> Email <em>*</em></label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Entrer email" required="required" />
@@ -41,13 +41,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="sujet">Sujet</label>
+                                <label for="sujet">Sujet <em>*</em></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Entrer sujet" required="required" />
                                 </div>
                             </div>                              
                             <div class="form-group">
-                                <label for="texte">Message</label>
+                                <label for="texte">Message <em>*</em></label>
                                 <textarea name="texte" id="texte" class="form-control" rows="8" cols="30" required="required"
                                           placeholder="Message"></textarea>
                             </div>
@@ -74,13 +74,6 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $texte = $_POST['texte'];
     $telephone = $_POST['tel'];
 
-
-    if ($telephone == "") {
-        $telephone = NULL;
-    } else {
-        $telephone = $_POST['tel'];
-    }
-
     $destinataire = 'safarizgame@gmail.com';
 // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $email;
@@ -102,7 +95,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             . $texte . '</div></body></html>';
 }
 
- 
+
 
 include 'views/footer.php';
 ?>

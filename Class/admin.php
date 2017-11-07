@@ -1,13 +1,12 @@
 <?php
 
 class admin {    
-    //    Déclaration des attributs
+    //  Déclaration des attributs
     private $id;
     private $login;
     private $mdp;
 
-}
-{   //  Fonction construct
+   //  Fonction construct
     function __construct($login, $mdp) {
         $this->login = $login;
         $this->mdp = $mdp;

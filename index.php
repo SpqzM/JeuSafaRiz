@@ -1,18 +1,24 @@
-<?php include './views/head.php'; ?>
+<?php
 
+include './views/head.php';
+require 'Class/autoload.php';
+require 'connexionBDD.php';
+$db = connect();
+$manager = new periodeManager($db);
+$periode = $manager->periodeJeu();
+$debut = strtotime($periode['0']);
+$fin = strtotime($periode['1']);
 
-     <div class="container">
-        <header class="row center">
-            <div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                <div id="gagner">Gagnez un</div><br>
-                <div id="safariz">SAFA'RIZ</div><br>
-                <div id="camargue">en Camargue</div><br>
-            </div>
-        </header>
-        <section class="row">
-            <div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' id="button">
-                <a href="inscription.php" type="button" class="btn btn-form btn-lg">JOUER</a>
-            </div>
-        </section>
-     </div>
-     <?php include './views/footer.php'; ?>
+date_default_timezone_set('Europe/Paris');
+$datetime = time("Y-m-d H:i:s");
+
+if ($datetime < $debut) {
+    header("Location: jeuPasOuvert.php");
+} elseif ($datetime > $fin) {
+    header("Location: jeuFerme.php");
+} else {
+    header("Location: jeuOuvert.php");
+}
+?>
+
+<?php include './views/footer.php'; ?>
