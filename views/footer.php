@@ -4,7 +4,9 @@
         <div class='col-sm-8'>
             <img class="img-responsive" src="img/igp.png" alt="igp.png" />
             <img class="img-responsive" src="img/rdc.png" alt="rdc.png" />
+            <div id="compte_a_rebours"><noscript>Fin de l'évènement.</noscript></div>
         </div>
+        
         <div class='col-sm-4'>
             <nav class="navbar navbar-expand" role="navigation">
                 <ul class="nav navbar-nav">

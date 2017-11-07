@@ -53,8 +53,8 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <span id="resultat"></span>
-                            <button type="submit" class="btn btn-form pull-right" id="btnContact">Envoyer</button>
+                            <span id="feedback"></span>
+                            <div class="btn btn-form pull-right" id="btnContact">Envoyer</div>
                         </div>
                     </div>
                 </form>
