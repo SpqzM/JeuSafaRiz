@@ -12,5 +12,13 @@
  * @author PC200
  */
 class participationsManager {
-    //put your code here
+    //Ajouter une participation
+    public function addParticipation(Participations $participation) {
+        $requete = $this->db->prepare('INSERT INTO participations (DATEPARTICIPATION, IDLOT, IDPARTICIPANT, RESULTAT)'
+            . 'VALUES(NOW(), :idlot, :idparticipant, :resultat)');
+        $requete->bindValue(':idlot', $participation->getIdLot());
+        $requete->bindValue(':idparticipant', $participation->getIdParticipant());
+        $requete->bindValue(':resultat', $participation->getResultat());
+        $requete->execute();
+    }
 }

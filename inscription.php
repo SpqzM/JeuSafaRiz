@@ -32,8 +32,11 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
 
 
 //Envoi de mail après inscriptions
-
-    $destinataire = 'safarizgame@gmail.com';
+    // On sécurise l'adresse mail destinataire
+    $debut = 'safarizgame';
+    $fin = '@gmail.com';
+    $mail = $debut . $fin;
+    $destinataire = $mail;
     // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $participant->getEmail();
     $expediteurnom = $participant->getNom();
@@ -53,6 +56,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             . '<div>'
             . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
             . '</div></body></html>';
+    mail($destinataire, $objet, $message, $headers);
 }
 ?>
 <div class="container">

@@ -80,8 +80,11 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     } else {
         $telephone = $_POST['tel'];
     }
-
-    $destinataire = 'safarizgame@gmail.com';
+// On sécurise l'adresse mail destinataire
+    $debut = 'safarizgame';
+    $fin = '@gmail.com';
+    $mail = $debut . $fin;
+    $destinataire = $mail;
 // Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
     $expediteurmail = $email;
     $expediteurnom = $nom . " " . $prenom;
@@ -98,11 +101,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $headers .= 'Reply-to: ' . $nom . '<' . $email . '>' . "\r\n"; // Expediteur
 
     $message = '<html><body><h1>' . $sujet . '</h1>'
-            . '<div style="width: 100%; text-align: center;">'
+            . '<div>'
             . $texte . '</div></body></html>';
+    mail($destinataire, $objet, $message, $headers);
 }
 
- 
+
 
 include 'views/footer.php';
 ?>
