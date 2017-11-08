@@ -30,7 +30,7 @@ class participationsManager {
     }
     //Limiter la participation Ã  un jour par foyer
     public function limit($email) {
-        $req = "SELECT email, adresse, cp, ville, participations.ID FROM `participations`, participants WHERE participants.email = :email AND participants.ID = participations.ID AND DATEPARTICIPATION = CURDATE();";
+        $req = "SELECT email, adresse, cp, ville, participations.ID IDPARTICIPANT FROM `perdu`, `participations`, participants WHERE participants.email = :email AND participants.ID = participations.ID AND DATEPARTICIPATION = CURDATE();";
         $result = $this->db->prepare($req);
         $result->bindValue(':email', $email);
         $result->execute();

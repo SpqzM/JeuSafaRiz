@@ -29,11 +29,19 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'telephone' => $telephone,
         'email' => $email,
         'mdp' => $password));
-
-    $manager->add($participant);
-
-
-//Envoi de mail après inscriptions
+    
+    // Contrôle de saisie php
+    $unwanted_array = array('Š' => 'S', 'š' => 's', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E',
+        'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U',
+        'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c',
+        'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
+        'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y');
+    $_POST['adresse'] = strtr($_POST['adresse'], $unwanted_array);
+    $_POST['ville'] = strtr($_POST['ville'], $unwanted_array);
+   
+    $flagSyntaxeCode_postal=preg_match('#^[0-9]{5}$#',$_POST['cp']);
+    
+    ////Envoi de mail après inscriptions
     // On sécurise l'adresse mail destinataire
     $debut = 'safarizgame';
     $fin = '@gmail.com';
@@ -58,6 +66,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
             . '<div>'
             . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
             . '</div></body></html>';
+    $manager->add($participant);
     mail($destinataire, $objet, $message, $headers);
 }
 ?>
@@ -96,20 +105,20 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="form-group">
                                 <label for="cp">CP <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" placeholder="Entrer code postal" required="required" />
+                                    <input type="text" class="form-control" name="cp" id="cp" maxlength="5" format="NNNNN" placeholder="Entrer code postal" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ville">Ville <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="ville" id="ville" maxlength="48" placeholder="Entrer ville" required="required" />
+                                    <input type="text" class="form-control" name="ville" id="ville" maxlength="48" format="MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" placeholder="Entrer ville" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tel"> Tél </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-mobile-phone"></span></span>
-                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" placeholder="Entrer téléphone" />
+                                    <input type="tel" class="form-control" name="tel" id="tel" maxlength="10" format="NNNNNNNNNN" placeholder="Entrer téléphone" />
                                 </div>
                             </div>                            
                         </div>
@@ -117,7 +126,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                             <div class="form-group">
                                 <label for="adresse">Adresse <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="adresse" id="adresse" maxlength="48" placeholder="Entrer adresse" required="required" />
+                                    <input type="text" class="form-control" name="adresse" id="adresse" maxlength="48" format="MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" placeholder="Entrer adresse" required="required" />
                                 </div>
                             </div>                         
                         </div>
