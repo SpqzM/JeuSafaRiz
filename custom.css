@@ -363,7 +363,7 @@ form#contact-form input:focus,form#contact-form textarea:focus{
         left: 0;
         right: 0;
     }
-    #adminForm
+    #adminForm, #formParticipants
     {
         margin: 15px 15px 15px;
         padding: 15px 15px 15px;
@@ -377,10 +377,10 @@ form#contact-form input:focus,form#contact-form textarea:focus{
     {
         bottom: auto;
     }
-    #adminForm
+    #adminForm, #formParticipants
     {
-        margin: 15px, 15px, 15px;
-        padding: 15px, 15px, 15px;
+        margin: 15px 15px 15px;
+        padding: 15px 15px 15px;
     }
 }
 
@@ -391,10 +391,10 @@ form#contact-form input:focus,form#contact-form textarea:focus{
     {
         bottom: auto;
     }
-    #adminForm
+    #adminForm, #formParticipants
     {
-        margin: 25px, 25px, 25px;
-        padding: 25px, 25px, 25px;
+        margin: 25px 25px 25px;
+        padding: 25px 25px 25px;
     }
 }
 
