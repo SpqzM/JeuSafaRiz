@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="custom.css">
         <script src="Js/jquery-3.2.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon/apple-icon-180x180.png" />
 
         <title>Jeu SafaRiz</title>
     </head>

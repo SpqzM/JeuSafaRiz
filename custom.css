@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* STRUCTURE */
+html{
+    height: 100%;
+}
 body
 {
     background-image: url('img/cheval.jpg');
@@ -9,7 +12,10 @@ body
     background-attachment: fixed;
     background-position: center;
     font-family: 'Lato';
-    color: #000;    
+    color: #000;
+    min-height: 120%;
+    position: relative;
+
 }
 
 .row
@@ -82,7 +88,10 @@ header {
 footer 
 {
     background: rgba(247, 249, 251, 0.7);
-
+    position: absolute;
+    width:100%;
+    bottom: auto;
+    left:0;
 }
 
 /* NAV */
@@ -104,7 +113,7 @@ footer
 .img-responsive 
 {
     display: inline-block;
-    width: 120px;
+    width: 70px;
     height: auto;
 }
 #compte_a_rebours
@@ -167,6 +176,7 @@ form#contact-form .form-group label {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;
+   
 }
 form#contact-form input,form#contact-form textarea {
     border-radius: 0;
@@ -196,6 +206,7 @@ form#contact-form input:focus,form#contact-form textarea:focus{
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    white-space: normal;
 }
 
 .btn:hover,
@@ -206,10 +217,23 @@ form#contact-form input:focus,form#contact-form textarea:focus{
 
 .btn-form
 {
-  color: #fff;
-  background-color: #5175A9;
-  border-color: #5175A9;
-  cursor: pointer;
+    color: #fff;
+    background-color: #5175A9;
+    border-color: #5175A9;
+    cursor: pointer;
+
+}
+#btnRegister{
+    
+    color: #fff;
+    background-color: #5175A9;
+    border-color: #5175A9;
+    cursor: pointer; 
+    margin-left: 1em;
+    margin-top: 0.5em;
+    margin: 2px 2px 2px;
+    padding: 5px 5px 5px;
+
 }
 
 .errorLogin{
@@ -220,6 +244,8 @@ form#contact-form input:focus,form#contact-form textarea:focus{
 {
     color: crimson;
     border: solid 1px crimson;
+    padding:1em;
+    background:#ffe0e6;
 }
 
 .valid 
@@ -232,6 +258,165 @@ form#contact-form input:focus,form#contact-form textarea:focus{
 {
     color: crimson;
     font-weight: bold;
+}
+* 
+{
+    -moz-box-sizing: border-box; box-sizing: border-box;
+}
+@media (max-width: 375px) 
+{
+
+    .navbar-expand .navbar-nav 
+    {
+        flex-direction: column;
+    }
+    
+    footer
+    {
+        bottom: auto;
+    }
+#gagner
+{
+ 
+    border-width: 2px;
+    border-radius: 1px 1px 1px 1px;
+    font-size: 10px;
+    display: inline-block;
+}
+
+#safariz
+{
+  
+    border-width: 2px;
+    border-radius: 1px 1px 1px 1px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+#camargue
+{
+
+    border-width: 2px;
+    border-radius: 1px 1px 1px 1px;
+    font-size: 10px;
+    display: inline-block;
+}
+}
+
+#reglement
+{
+    max-height: 500px;
+    overflow: auto;
+}
+/* Extra small devices (portrait phones, less than 465px) */
+
+@media (min-width: 375px) and (max-width: 465px)
+{
+    
+    #btnRegister
+    {
+        line-break: inherit;
+    }
+
+    .navbar-expand .navbar-nav 
+    {
+        flex-direction: column;
+    }
+     footer
+    {
+        bottom: auto;
+    }
+#gagner
+{
+ 
+    border-width: 2px;
+    border-radius: 2px 2px 2px 2px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+#safariz
+{
+  
+    border-width: 2px;
+    border-radius: 2px 2px 2px 2px;
+    font-size: 19px;
+    display: inline-block;
+}
+
+#camargue
+{
+
+    border-width: 2px;
+    border-radius: 2px 2px 2px 2px;
+    font-size: 14px;
+    display: inline-block;
+}
+}
+
+/* Small devices (landscape phones, 465px and up) */
+@media (min-width: 465px) and (max-width: 768px) 
+{
+    .navbar-expand .navbar-nav 
+    {
+        flex-direction: column;
+    }
+     footer
+    {
+        bottom: auto;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) 
+{
+    footer
+    {
+        bottom: auto;
+        left: 0;
+        right: 0;
+    }
+    #adminForm, #formParticipants
+    {
+        margin: 15px 15px 15px;
+        padding: 15px 15px 15px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) 
+{
+    footer
+    {
+        bottom: auto;
+    }
+    #adminForm, #formParticipants
+    {
+        margin: 15px 15px 15px;
+        padding: 15px 15px 15px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) 
+{ 
+    footer
+    {
+        bottom: auto;
+    }
+    #adminForm, #formParticipants
+    {
+        margin: 25px 25px 25px;
+        padding: 25px 25px 25px;
+    }
+}
+
+@media (min-height: 600px) 
+{ 
+    footer
+    {
+        bottom: 0;
+    }
 }
 
 /* COLORS */

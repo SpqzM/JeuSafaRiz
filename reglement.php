@@ -10,7 +10,7 @@ include 'views/head.php';
         </header>
 
         <div class="col-sm-4 col-md-8 col-lg-8">
-            <div class="boxed-grey">
+            <div class="boxed-grey" id="reglement">
                 <h3>Réglement du jeu Safa'Riz</h3>                    
                 <h6>ARTICLE 1- SOCIETE ORGNISATRICE</h6>
                 <p>La "Société Organisatrice", organise du 06/11/2017 (0h01) au 13/11/2017 (23h59) inclus,
