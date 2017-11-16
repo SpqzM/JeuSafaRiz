@@ -30,8 +30,8 @@ if(isset($_POST['login']) && isset($_POST['mdp']))
             <div id="safariz">SAFA'RIZ</div>
             <div id="camargue">en Camargue</div>
         </header>
-        <div class="col-md-5">
-            <div class="boxed-grey">
+        <div class="col-md-7">
+            <div class="boxed-grey" id="adminForm">
                 <form action="" method="post">
                     <h5>Connexion</h5>
                     <div class="row">
