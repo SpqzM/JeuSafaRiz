@@ -5,22 +5,21 @@ require 'Class/autoload.php';
 require 'connexionBDD.php';
 $db = connect();
 $mAdmin = new adminManager($db);
-$errorLogin = ""; 
+$errorLogin = "";
 
-if(isset($_POST['login']) && isset($_POST['mdp']))
-{
+// Vérification des valeurs entrées
+if (isset($_POST['login']) && isset($_POST['mdp'])) {
     $login = $_POST['login'];
     $mdp = $_POST['mdp'];
-    if(strlen(trim($login)) > 1 && strlen(trim($mdp)) > 1){
+    if (strlen(trim($login)) > 1 && strlen(trim($mdp)) > 1) {
         $user = $mAdmin->verifAdmin($login, $mdp);
-        if($user){
+        if ($user) {
             header("Location: backOffice.php");
-        }else{
-            $errorLogin= "Login et/ou mot de passe incorrect";
+        } else {
+            $errorLogin = "Login et/ou mot de passe incorrect";
         }
     }
 }
-
 ?>
 
 <div class="container">
@@ -52,7 +51,7 @@ if(isset($_POST['login']) && isset($_POST['mdp']))
                             </div>    
                         </div>
                         <div class="col-md-12">
-                            <div class="errorLogin"><?php echo $errorLogin;?></div>
+                            <div class="errorLogin"><?php echo $errorLogin; ?></div>
                         </div>                        
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-form pull-right" id="btnAdmin" name="btnAdmin" >Valider</button>

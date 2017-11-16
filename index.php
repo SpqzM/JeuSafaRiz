@@ -6,8 +6,8 @@ require 'connexionBDD.php';
 $db = connect();
 $manager = new periodeManager($db);
 $periode = $manager->periodeJeu();
-$debut = strtotime($periode['0']);
-$fin = strtotime($periode['1']);
+$debut = strtotime($periode[0]);
+$fin = strtotime($periode[1]);
 
 date_default_timezone_set('Europe/Paris');
 $datetime = time("Y-m-d H:i:s");

@@ -74,7 +74,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $texte = $_POST['texte'];
     $telephone = $_POST['tel'];
 
-    
+
     if ($telephone == "") {
         $telephone = NULL;
     } else {
