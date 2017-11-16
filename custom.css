@@ -206,10 +206,19 @@ form#contact-form input:focus,form#contact-form textarea:focus{
 
 .btn-form
 {
-  color: #fff;
-  background-color: #5175A9;
-  border-color: #5175A9;
-  cursor: pointer;
+    color: #fff;
+    background-color: #5175A9;
+    border-color: #5175A9;
+    cursor: pointer;
+}
+#btnRegister{
+    
+    color: #fff;
+    background-color: #5175A9;
+    border-color: #5175A9;
+    cursor: pointer; 
+    margin-left: 1em;
+    margin-top: 0.5em;
 }
 
 .errorLogin{
@@ -220,6 +229,8 @@ form#contact-form input:focus,form#contact-form textarea:focus{
 {
     color: crimson;
     border: solid 1px crimson;
+    padding:1em;
+    background:#ffe0e6;
 }
 
 .valid 
@@ -233,6 +244,7 @@ form#contact-form input:focus,form#contact-form textarea:focus{
     color: crimson;
     font-weight: bold;
 }
+
 
 /* COLORS */
 

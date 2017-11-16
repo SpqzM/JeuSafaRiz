@@ -73,13 +73,24 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $sujet = $_POST['sujet'];
     $texte = $_POST['texte'];
     $telephone = $_POST['tel'];
-
+        
+    // Contrôle de saisie php
     
-    if ($telephone == "") {
-        $telephone = NULL;
-    } else {
-        $telephone = $_POST['tel'];
+    
+    $flagSyntaxeTel = preg_match('#[^0-9]{10}$#', $_POST['tel']);
+    if ($flagSyntaxeTel = 0){
+        echo"Rentrez un numéro de téléphone à 10 chiffres ";
     }
+    $flagSyntaxenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['nom']);
+    if ($flagSyntaxenom = 0) {
+        echo"Votre nom ne peut comportez que des lettres, tirets et espaces";
+    }
+    $flagSyntaxeprenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['prenom']);
+    if ($flagSyntaxenom = 0) {
+        echo"Votre prénom ne peut comportez que des lettres, tirets et espaces";
+    }
+    
+    
 // On sécurise l'adresse mail destinataire
     $debut = 'safarizgame';
     $fin = '@gmail.com';
