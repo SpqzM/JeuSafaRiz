@@ -1,40 +1,63 @@
 <?php
-class participationsManager {
+
+class participationsManager
+{
 
     private $db;
 
-    public function __construct(PDO $db) {
+    public function __construct(PDO $db)
+    {
         $this->db = $db;
     }
 
     //Ajouter une participation
-    public function addParticipation(Participations $participation) {
+    public function addParticipation(Participations $participation)
+    {
         $requete = $this->db->prepare('INSERT INTO participations (DATEPARTICIPATION, IDLOT, IDPARTICIPANT, RESULTAT)'
             . 'VALUES(NOW(), :idlot, :idparticipant, :resultat)');
         $requete->bindValue(':idlot', $participation->getIdLot());
         $requete->bindValue(':idparticipant', $participation->getIdParticipant());
         $requete->bindValue(':resultat', $participation->getResultat());
         $requete->execute();
+        return $this->db->lastInsertId();
     }
 
-    
     // Affiche le lot gagnant
-    public function libelleLot($idLot,$idParticipant)
+    public function libelleLot($idLot, $idParticipant)
     {
-        $query = 'SELECT LIBELLE FROM lots,participations WHERE lots.ID= participations.IDLOT AND IDLOT=:idLot AND IDPARTICIPANT= :idParticipant';
+        $query = 'SELECT LIBELLE FROM lots,participations WHERE lots.ID= participations.IDLOT '
+            . 'AND IDLOT=:idLot AND IDPARTICIPANT= :idParticipant';
         $result = $this->db->prepare($query);
         $result->bindValue(':idLot', $idLot, PDO::PARAM_INT);
-        $result->bindValue(':idParticipant',$idParticipant, PDO::PARAM_INT);
+        $result->bindValue(':idParticipant', $idParticipant, PDO::PARAM_INT);
         $result->execute();
         return $result->fetch();
     }
-    //Limiter la participation Ã  un jour par foyer
-    public function limit($email) {
-        $req = "SELECT email, adresse, cp, ville, participations.id, perdu.IDPARTICIPANT FROM `perdu`, `participations`, `participants` WHERE participants.email = :email AND participants.id = participations.id AND perdu.DATEPARTICIPATION = CURDATE() AND participations.dateparticipation = CURDATE();";
+
+    //Controler la participation à une par jour
+    public function controleParticipation($email)
+    {
+        $req = "SELECT participants.id, email FROM participants 
+            WHERE id IN (SELECT idParticipant FROM participations
+                         WHERE DATE(participations.DATEPARTICIPATION) = CURDATE())
+            OR id IN ( SELECT id FROM perdu 
+                        WHERE DATE(perdu.DATEPARTICIPATION) = CURDATE() )
+            AND email = :email";
         $result = $this->db->prepare($req);
         $result->bindValue(':email', $email);
         $result->execute();
         return $result->fetch();
     }
-}
 
+    //Verifie q'un participant n'a pas déja gagné
+    public function verifGagant($id)
+    {
+        $req = "SELECT id from participants
+                WHERE id in (SELECT IDPARTICIPANT from participations)
+                AND id = :id";
+        $result = $this->db->prepare($req);
+        $result->bindValue(':id', $id);
+        $result->execute();
+        return $result->fetch();
+    }
+}

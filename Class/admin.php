@@ -1,31 +1,40 @@
 <?php
 
-class admin {    
+class admin
+{
     //  Déclaration des attributs
     private $id;
     private $login;
     private $mdp;
 
-   //  Fonction construct
-    function __construct($login, $mdp) {
+    //  Fonction construct
+    function __construct($login, $mdp)
+    {
         $this->login = $login;
         $this->mdp = $mdp;
-}
-    function getLogin() {
+    }
+
+//   Getter et Setter
+    function getLogin()
+    {
         return $this->login;
     }
 
-    function getMdp() {
+    function getMdp()
+    {
         return $this->mdp;
     }
 
-    function setLogin($login) {
+    function setLogin($login)
+    {
         $this->login = $login;
     }
 
-    function setMdp($mdp) {
+    function setMdp($mdp)
+    {
         $this->mdp = $mdp;
     }
 
 }
+
 ?>

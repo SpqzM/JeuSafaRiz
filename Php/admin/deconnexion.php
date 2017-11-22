@@ -3,5 +3,5 @@
 	session_destroy();
 ?>
 	<script>
-		document.location.href="index.php";
+		document.location.href="../../index.php";
 	</script>

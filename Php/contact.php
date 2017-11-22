@@ -1,4 +1,4 @@
-<?php include 'views/head.php'; ?>
+<?php include '../Views/head.php'; ?>
 
 <div class="container">
     <div class="row">
@@ -12,43 +12,49 @@
                 <form id="contact-form" method="post">
 
                     <h3>Contact</h3>
-                    <p>Besoin de renseignement complémentaires ? </p>  
-                    <p>Tous les champs marqués d'une * sont obligatoires</p>                    
+                    <p>Besoin de renseignement complémentaires ? </p>
+                    <p>Tous les champs marqués d'une * sont obligatoires</p>
                     <div class="row">
-                        <div class="col-md-6 ">                                       
+                        <div class="col-md-6 ">
                             <div class="form-group">
                                 <label for="nom"> Nom <em>*</em></label>
-                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer nom" required="required" />
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer nom"
+                                       required="required"/>
                             </div>
                             <div class="form-group">
                                 <label for="prenom"> Prénom <em>*</em></label>
-                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrer prénom" required="required" />
+                                <input type="text" class="form-control" id="prenom" name="prenom"
+                                       placeholder="Entrer prénom" required="required"/>
                             </div>
                             <div class="form-group">
                                 <label for="email"> Email <em>*</em></label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Entrer email" required="required" />
-                                </div>                            
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="Entrer email" required="required"/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tel"> Tél </label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-mobile-phone"></span></span>
-                                    <input type="tel" class="form-control" id="tel" name="tel" placeholder="Entrer téléphone" required="required" />
+                                    <input type="tel" class="form-control" id="tel" name="tel"
+                                           placeholder="Entrer téléphone" required="required"/>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="sujet">Sujet <em>*</em></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Entrer sujet" required="required" />
+                                    <input type="text" class="form-control" id="sujet" name="sujet"
+                                           placeholder="Entrer sujet" required="required"/>
                                 </div>
-                            </div>                              
+                            </div>
                             <div class="form-group">
                                 <label for="texte">Message <em>*</em></label>
-                                <textarea name="texte" id="texte" class="form-control" rows="8" cols="30" required="required"
+                                <textarea name="texte" id="texte" class="form-control" rows="8" cols="30"
+                                          required="required"
                                           placeholder="Message"></textarea>
                             </div>
                         </div>
@@ -73,24 +79,25 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $sujet = $_POST['sujet'];
     $texte = $_POST['texte'];
     $telephone = $_POST['tel'];
-        
+
+
     // Contrôle de saisie php
-    
-    
+
+
     $flagSyntaxeTel = preg_match('#[^0-9]{10}$#', $_POST['tel']);
-    if ($flagSyntaxeTel = 0){
-        echo"Rentrez un numéro de téléphone à 10 chiffres ";
+    if ($flagSyntaxeTel = 0) {
+        echo "Rentrez un numéro de téléphone à 10 chiffres ";
     }
     $flagSyntaxenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['nom']);
     if ($flagSyntaxenom = 0) {
-        echo"Votre nom ne peut comportez que des lettres, tirets et espaces";
+        echo "Votre nom ne peut comportez que des lettres, tirets et espaces";
     }
     $flagSyntaxeprenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['prenom']);
     if ($flagSyntaxenom = 0) {
-        echo"Votre prénom ne peut comportez que des lettres, tirets et espaces";
+        echo "Votre prénom ne peut comportez que des lettres, tirets et espaces";
     }
-    
-    
+
+
 // On sécurise l'adresse mail destinataire
     $debut = 'safarizgame';
     $fin = '@gmail.com';
@@ -113,12 +120,11 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $headers .= 'Reply-to: ' . $nom . '<' . $email . '>' . "\r\n"; // Expediteur
 
     $message = '<html><body><h1>' . $sujet . '</h1>'
-            . '<div>'
-            . $texte . '</div></body></html>';
+        . '<div>'
+        . $texte . '</div></body></html>';
     mail($destinataire, $objet, $message, $headers);
 }
 
 
-
-include 'views/footer.php';
+include '../Views/footer.php';
 ?>

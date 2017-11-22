@@ -1,18 +1,19 @@
 <?php
 session_start();
-include 'views/head.php';
-require 'Class/autoload.php';
-require 'connexionBDD.php';
+include 'head.php';
+require '../../Class/autoload.php';
+require '../../Pdo/connexionBDD.php';
 $db = connect();
-$manager = new backOffice($db);
+$manager = new backOfficeManager($db);
 $nb = $manager->countLots();
 $nbRestant = $manager->lotsRestant();
-$nbPartciipant = $manager->nbParticipants();
-$nbGagnant = $manager->nbParticipantsGagnant();
+$nbPartcipant = $manager->nbParticipants();
+$nbGagnant = $manager->nbParticipantsGagnants();
+
 ?>
 <div class="container">
-    <div class="row">      
-        <div class="col-sm-6 col-md-12 col-lg-12">
+    <div class="row">
+        <div class=" col-sm-6 col-md-12 col-lg-12">
             <div class="boxed-grey">
                 <h3>Administration - JeuSafaRiz</h3>
                 <a href="deconnexion.php" class="pull-right"><span class="fa fa-sign-out"></span>Déconnexion</a>
@@ -26,20 +27,23 @@ $nbGagnant = $manager->nbParticipantsGagnant();
                         <p>Nombre de lot restant</p>
                     </div>
                     <div class="col-md-3">
-                        <h4><?php echo $nbPartciipant['0']; ?></h4>
+                        <h4><?php echo $nbPartcipant['0']; ?></h4>
                         <p>Nombre de participants</p>
                     </div>
                     <div class="col-md-3">
                         <h4><?php echo $nbGagnant['0']; ?></h4>
                         <p>Nombre de gagnant</p>
                     </div>
-                    <div class="col-md-3">
-                        <a href="exportCsv.php" type="button" class="btn btn-form">Liste des participants gagnants</a>
+                    <div class="col-md-6">
+                        <a href="exportParticipant.php" type="button" class="btn btn-form">Liste des participants</a>
                     </div>
-                </div>                    
-            </div>                
-        </div>            
+                    <div class="col-md-6">
+                        <a href="exportGagnant.php" type="button" class="btn btn-form">Liste des participants gagnants</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>                    
+</div>
 
-<?php include 'views/footer.php' ?>
+<?php include 'footer.php' ?>

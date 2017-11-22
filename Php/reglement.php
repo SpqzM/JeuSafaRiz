@@ -1,5 +1,5 @@
 <?php
-include 'views/head.php';
+include '../Views/head.php';
 ?>
 <div class="container">
     <div class="row">
@@ -34,4 +34,4 @@ include 'views/head.php';
         </div>
     </div>                    
 </div>
-<?php include 'views/footer.php' ?>
+<?php include '../Views/footer.php' ?>
