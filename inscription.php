@@ -7,6 +7,7 @@ require 'connexionBDD.php';
 $db = connect();
 $manager = new participantsManager($db);
 $managerP = new participationsManager($db);
+$erreur = "";
 
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['adresse']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['mdp'])) {
     $nom = $_POST['nom'];
@@ -39,7 +40,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y');
     $_POST['adresse'] = strtr($_POST['adresse'], $unwanted_array);
     $_POST['ville'] = strtr($_POST['ville'], $unwanted_array);
-    $erreur = "";
+    
     $is_valid = true;
     $flagSyntaxeCode_postal = preg_match('#[0-9]{5}$#', $_POST['cp']);
     if ($flagSyntaxeCode_postal == 0 || empty($_POST['cp'])) {
@@ -51,12 +52,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         $erreur .= "Rentrez un numéro de téléphone à 10 chiffres. <br>";
         $is_valid = false;
     }
-    $flagSyntaxeNom = preg_match('#[a-zA-Z\S\-]{48}$#', $_POST['nom']);
+    $flagSyntaxeNom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $_POST['nom']);
     if ($flagSyntaxeNom == 0 || empty($_POST['nom'])) {
         $erreur .= "Votre nom ne peut comporter que des lettres, tirets et espaces. <br>";
         $is_valid = false;
     }
-    $flagSyntaxePrenom = preg_match('#[a-zA-Z\S\-]{48}$#', $_POST['prenom']);
+    $flagSyntaxePrenom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $_POST['prenom']);
     if ($flagSyntaxePrenom == 0 || empty($_POST['prenom'])) {
         $erreur .= "Votre prénom ne peut comporter que des lettres, tirets et espaces. <br>";
         $is_valid = false;
@@ -117,7 +118,14 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
                 <form id="registration-form" method="post" action="inscription.php">
                     <h5>Inscrivez-vous ci-dessous ou <a href="connexionParticipant.php">S'identifier</a></h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
+                    
+                    <?php
+                    if(!empty($erreur)){
+                    ?>    
                     <div class="error"><?php echo $erreur; ?></div>
+                    <?php
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-md-6 ">
                             <div class="form-group">
