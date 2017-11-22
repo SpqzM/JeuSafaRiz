@@ -15,6 +15,7 @@ class periode
         $this->dateFin = $dateFin;
     }
 
+//   Getter et Setter
     function getId()
     {
         return $this->id;

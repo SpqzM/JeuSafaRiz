@@ -1,9 +1,9 @@
 <?php
-include './views/head.php';
-require 'Class/autoload.php';
-require 'connexionBDD.php';
-date_default_timezone_set('Europe/Paris');
+include '../Views/head.php';
+require '../Class/autoload.php';
+require '../Pdo/connexionBDD.php';
 
+date_default_timezone_set('Europe/Paris');
 $db = connect();
 $manager = new periodeManager($db);
 $periode = $manager->periodeJeu();
@@ -11,6 +11,7 @@ $debut = $periode['0'];
 setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
 // strftime("jourEnLettres jour moisEnLettres annee") de la date courante
 $date = strftime("%A %d %B %Y à %H:%M:%S", strtotime($debut));
+
 ?>
     <div class="container">
         <div class="row">
@@ -30,4 +31,4 @@ $date = strftime("%A %d %B %Y à %H:%M:%S", strtotime($debut));
             </div>
         </div>
     </div>
-<?php include 'views/footer.php' ?>
+<?php include '../Views/footer.php' ?>

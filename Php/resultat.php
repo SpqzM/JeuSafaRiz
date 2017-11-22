@@ -1,8 +1,10 @@
 <?php
+// Demarrage de la session
 session_start();
-include 'views/head.php';
-require 'Class/autoload.php';
-require 'connexionBDD.php';
+
+include '../Views/head.php';
+require '../Class/autoload.php';
+require '../Pdo/connexionBDD.php';
 
 // Instanciation des class manager
 $db = connect();
@@ -11,7 +13,8 @@ $ParticipantManager = new participantsManager($db);
 $mPerdu = new perduManager($db);
 $mLots = new lotsManager($db);
 
-if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) && isset($_POST['mdp'])) {
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) &&
+    isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) && isset($_POST['mdp'])) {
 // Récupération des inputs  
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -38,15 +41,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'mdp' => $password));
 
 // On ajoute l'objet participant
-//note : faire le controle sur l'ajout d'une participation gagne ou perdu !!!
-    $controleParticipant = $manager->controleParticipation($email);
-    var_dump($controleParticipant);
-    if ($controleParticipant != false) {
-        echo "Vous avez deja joué aujourd'hui";
-        exit();
-    } else {
-        $_SESSION["lastid"] = $ParticipantManager->add($participant);
-    }
+    $_SESSION["lastid"] = $ParticipantManager->add($participant);
 
 //Envoi de mail après inscriptions
     // On sécurise l'adresse mail destinataire
@@ -131,4 +126,4 @@ if ($lot[0] != false) {
         </div>
     </div>
 </div>
-<?php include 'views/footer.php' ?>
+<?php include '../Views/footer.php' ?>

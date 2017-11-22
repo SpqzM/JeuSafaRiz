@@ -27,6 +27,7 @@ class perdu
         }
     }
 
+//   Getter et Setter
     function getId()
     {
         return $this->id;

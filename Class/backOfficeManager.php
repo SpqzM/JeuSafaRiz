@@ -29,7 +29,7 @@ class backOfficeManager
         return $result->fetch();
     }
 
-// Affiche le nombre de participants gagnant/perdant
+// Affiche le nombre de participants (gagnant/perdant)
     public function nbParticipants()
     {
         $query = 'SELECT SUM(NB_participant)
@@ -44,7 +44,7 @@ class backOfficeManager
     }
 
 // Affiche le nombre de participants gagnants
-    public function nbParticipantsGagnant()
+    public function nbParticipantsGagnants()
     {
         $query = 'SELECT count(IDPARTICIPANT) as NB_ParticipantGagnant FROM `participations` WHERE RESULTAT="gagne"';
         $result = $this->db->prepare($query);
@@ -60,7 +60,7 @@ class backOfficeManager
             . 'WHERE participants.id = participations.IDPARTICIPANT '
             . 'AND participations.IDLOT=lots.ID AND RESULTAT="gagne"');
         $handle = fopen('php://output', 'w+');
-        //On insère les nom des champs
+        //On insère les noms des champs
         fputcsv($handle, array('nom', 'prenom', 'adresse', 'cp', 'ville', 'telephone', 'email', 'lot'), ';');
         $result->setFetchMode(PDO::FETCH_ASSOC);
         while ($donnees = $result->fetch()) {

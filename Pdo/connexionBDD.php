@@ -1,8 +1,9 @@
 <?php
 
-//connexion à la base de donnée avec PDO
+//connexion à la base de donnée avec Pdo
 
-function connect() {
+function connect()
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=jeusafariz;charset=utf8', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
