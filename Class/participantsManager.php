@@ -26,6 +26,18 @@ class participantsManager
         return $this->db->lastInsertId();
     }
 
+    // Verifie qu'un participant n'existe pas déjà
+    public function participantExists($email){
+        $requete = 'SELECT EMAIL FROM participants
+                  WHERE EMAIL = :email';
+        $result = $this->db->prepare($requete);
+        $result->bindValue(':email', $email, PDO::PARAM_STR);
+        $result->execute();
+        $res = $result->fetch();
+        $result->closeCursor();
+        return $res;
+    }
+
     // Verification connexion participant
     public function verifParticipant($email, $mdp)
     {

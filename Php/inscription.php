@@ -117,7 +117,7 @@ $managerP = new participationsManager($db);
                 <form id="registration-form" method="post" action="resultat.php">
                     <h5>Inscrivez-vous ci-dessous ou <a href="connexionParticipant.php">S'identifier</a></h5>
                     <h6>Tous les champs marqués d'une * sont obligatoires</h6>
-<!--                    <div class="error">--><?php //echo $erreur; ?><!--</div>-->
+                    <!--                    <div class="error">--><?php //echo $erreur; ?><!--</div>-->
                     <div class="row">
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -200,7 +200,7 @@ $managerP = new participationsManager($db);
 
                             </div>
                         </div>
-                        <!--                        <div class="col-md-12"> 
+                        <!--                        <div class="col-md-12">
                                                     <div class="btn btn-form pull-right" id="btnRegister">Valider votre inscription</div>
                                                 </div>-->
                         <div class="col-md-6">

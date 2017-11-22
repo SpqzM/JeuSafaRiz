@@ -13,6 +13,7 @@ $ParticipantManager = new participantsManager($db);
 $mPerdu = new perduManager($db);
 $mLots = new lotsManager($db);
 
+var_dump($_POST);
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['cp']) &&
     isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['reglement']) && isset($_POST['mdp'])) {
 // Récupération des inputs  
@@ -40,8 +41,12 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
         'email' => $email,
         'mdp' => $password));
 
-// On ajoute l'objet participant
-    $_SESSION["lastid"] = $ParticipantManager->add($participant);
+// On verifie que le participant n'existe pas et on ajoute l'objet participant
+    if (!$ParticipantManager->participantExists($email)) {
+        $_SESSION["lastid"] = $ParticipantManager->add($participant);
+    } else {
+        echo "Vous êtes déjà inscrit";
+    }
 
 //Envoi de mail après inscriptions
     // On sécurise l'adresse mail destinataire
@@ -67,14 +72,17 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $message = '<html><body><h1>' . $objet . '</h1>'
         . '<div>'
         . 'L\'utilisateur' . $expediteurnom . 's`\'est inscrit.'
+
         . '</div></body></html>';
     mail($destinataire, $objet, $message, $headers);
 }
 
+//Traitement d'un instant gagnant
 $lot = $mLots->lotId();
 $lastParticipant = $_SESSION["lastid"];
 session_unset();
 
+//Verification de l'instant gagnant en cours et si pas gagne
 if ($lot[0] != false) {
     $resultat = "gagne";
     $idLot = $lot[0];
@@ -84,10 +92,18 @@ if ($lot[0] != false) {
         'idParticipant' => $idParticipant,
         'resultat' => $resultat
     ));
-    $manager->addParticipation($participation);
+
+    $controleParticipant = $manager->controleParticipation($email);
+    var_dump($controleParticipant);
+    if ($controleParticipant != false) {
+        echo "Vous avez deja joué aujourd'hui";
+        exit();
+    } else {
+        $manager->addParticipation($participation);
+    }
     $libelleLot = $manager->libelleLot($idLot, $idParticipant);
     $msgGagne = '<h3>Bravo vous avez gagné</h3>
-                <p class="lot">' . $libelleLot[0] . '</p>
+                <p class="lot center">' . $libelleLot[0] . '</p>
                 <p>Vous serez contacté en fin de jeu pour des modalités de retrait de votre gain. </p>
                 <p>En attendant, visitez notre site <a href="http://www.rizdecamargue.com" target="_blank">www.rizdecamargue.com</a> </p>';
 } else {
