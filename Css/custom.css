@@ -231,6 +231,11 @@ form#contact-form input:focus, form#contact-form textarea:focus {
     overflow: auto;
 }
 
+.lot{
+    color: #5175A9;
+    font-weight: bold;
+}
+
 /* Erreurs */
 .errorLogin {
     color: #cc0000;

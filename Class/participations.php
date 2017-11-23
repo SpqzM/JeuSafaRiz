@@ -8,7 +8,6 @@ class Participations
     private $dateParticipation;
     private $idLot;
     private $idParticipant;
-    private $resultat;
 
     //Constructeur
     public function __construct(array $tuple = [])
@@ -40,11 +39,6 @@ class Participations
         return $this->dateParticipation;
     }
 
-    function getResultat()
-    {
-        return $this->resultat;
-    }
-
     function getIdLot()
     {
         return $this->idLot;
@@ -63,11 +57,6 @@ class Participations
     function setDateParticipation($dateParticipation)
     {
         $this->dateParticipation = $dateParticipation;
-    }
-
-    function setResultat($resultat)
-    {
-        $this->resultat = $resultat;
     }
 
     function setIdLot($idLot)
