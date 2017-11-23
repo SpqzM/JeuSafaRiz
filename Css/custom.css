@@ -240,6 +240,7 @@ form#contact-form input:focus, form#contact-form textarea:focus {
     color: crimson;
     border: solid 1px crimson;
     background: #ffe0e6;
+    padding: 1em;
 }
 
 .valid {

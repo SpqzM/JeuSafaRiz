@@ -34,22 +34,24 @@ class participationsManager
         return $result->fetch();
     }
 
-    //Controler la participation à une par jour
+    //Controle la participation à une par jour
     public function controleParticipation($email)
     {
-        $req = "SELECT participants.id, email FROM participants 
-            WHERE id IN (SELECT idParticipant FROM participations
+        $req = "SELECT participants.id, participants.email FROM participants 
+            WHERE (participants.id IN (SELECT idParticipant FROM participations
                          WHERE DATE(participations.DATEPARTICIPATION) = CURDATE())
-            OR id IN ( SELECT id FROM perdu 
-                        WHERE DATE(perdu.DATEPARTICIPATION) = CURDATE() )
-            AND email = :email";
+            OR participants.id IN ( SELECT id FROM perdu 
+                        WHERE DATE(perdu.DATEPARTICIPATION) = CURDATE() ))
+            AND participants.email = :email";
         $result = $this->db->prepare($req);
         $result->bindValue(':email', $email);
         $result->execute();
-        return $result->fetch();
+        $res = $result->fetch();
+        $result->closeCursor();
+        return $res;
     }
 
-    //Verifie q'un participant n'a pas déja gagné
+    //Verifie qu'un participant n'a pas déja gagné
     public function verifGagant($id)
     {
         $req = "SELECT id from participants
