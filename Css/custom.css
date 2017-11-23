@@ -238,7 +238,8 @@ form#contact-form input:focus, form#contact-form textarea:focus {
 
 /* Erreurs */
 .errorLogin {
-    color: #cc0000;
+    color: #DC143C;
+    font-weight: bold;
 }
 
 .error {

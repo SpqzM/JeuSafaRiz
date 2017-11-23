@@ -37,26 +37,26 @@ if (!empty($_POST)) {
 
     $flagSyntaxeCode_postal = preg_match('#[0-9]{5}$#', $cp);
     if ($flagSyntaxeCode_postal == 0 || empty($cp)) {
-        $erreur .= " Rentrez un code postal à 5 chiffres. <br>";
+        $erreur .= "Rentrez un code postal à 5 chiffres. <br>";
         $is_valid = false;
     }
     $flagSyntaxeTel = preg_match('#[0-9]{10}$#', $telephone);
     if ($flagSyntaxeTel == 0 || empty($telephone)) {
-        $erreur .= " Rentrez un numéro de téléphone à 10 chiffres. <br>";
+        $erreur .= "Rentrez un numéro de téléphone à 10 chiffres. <br>";
         $is_valid = false;
     }
     $flagSyntaxeNom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $nom);
     if ($flagSyntaxeNom == 0 || empty($nom)) {
-        $erreur .= " Votre nom ne peut comporter que des lettres, tirets et espaces. <br>";
+        $erreur .= "Votre nom ne peut comporter que des lettres, tirets et espaces. <br>";
         $is_valid = false;
     }
     $flagSyntaxePrenom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $prenom);
     if ($flagSyntaxePrenom == 0 || empty($prenom)) {
-        $erreur .= " Votre prénom ne peut comporter que des lettres, tirets et espaces. <br>";
+        $erreur .= "Votre prénom ne peut comporter que des lettres, tirets et espaces. <br>";
         $is_valid = false;
     }
     if (!isset($_POST['reglement'])) {
-        $erreur .= " Veuillez accepter le règlement du jeu. <br>";
+        $erreur .= "Veuillez accepter le règlement du jeu. <br>";
         $is_valid = false;
     }
 

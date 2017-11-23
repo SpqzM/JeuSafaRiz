@@ -1,7 +1,6 @@
 <?php
-	session_start();
-	session_destroy();
+session_start();
+session_destroy();
+header('Location: ../../index.php');
+exit();
 ?>
-	<script>
-		document.location.href="../../index.php";
-	</script>
