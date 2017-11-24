@@ -46,7 +46,7 @@ class backOfficeManager
 // Affiche le nombre de participants gagnants
     public function nbParticipantsGagnants()
     {
-        $query = 'SELECT count(IDPARTICIPANT) as NB_ParticipantGagnant FROM `participations` WHERE RESULTAT="gagne"';
+        $query = 'SELECT count(IDPARTICIPANT) as NB_ParticipantGagnant FROM `participations`';
         $result = $this->db->prepare($query);
         $result->execute();
         return $result->fetch();
@@ -58,7 +58,7 @@ class backOfficeManager
         $result = $this->db->query('select `NOM`,`PRENOM`,`ADRESSE`,`CP`,`VILLE`,`TELEPHONE`,`EMAIL`,`DATEINSCRIPTION`,`LIBELLE` '
             . 'from participants,participations,lots '
             . 'WHERE participants.id = participations.IDPARTICIPANT '
-            . 'AND participations.IDLOT=lots.ID AND RESULTAT="gagne"');
+            . 'AND participations.IDLOT=lots.ID ');
         $handle = fopen('php://output', 'w+');
         //On insère les noms des champs
         fputcsv($handle, array('nom', 'prenom', 'adresse', 'cp', 'ville', 'telephone', 'email', 'lot'), ';');

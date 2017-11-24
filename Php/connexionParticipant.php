@@ -13,6 +13,7 @@ if (isset($_POST['emailP']) && isset($_POST['mdp'])) {
     if (strlen(trim($email)) > 1 && strlen(trim($mdp)) > 1) {
         $user = $mParticipant->verifParticipant($email, $mdp);
         if ($user) {
+            $_SESSION['id'] = $user['ID'];
             header("Location: resultat.php");
             exit();
         } else {
@@ -31,7 +32,7 @@ if (isset($_POST['emailP']) && isset($_POST['mdp'])) {
         </header>
         <div class="col-md-7">
             <div class="boxed-grey" id="formParticipants">
-                <form action="" method="post">
+                <form action="" method="post" id="cnxParticipant">
                     <h5>Connexion</h5>
                     <div class="row">
                         <div class="col-md-12">                                       

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (contactRegistration) {
-        contactRegistration.addEventListener('submit', submitContactForm, true);
+        contactRegistration.addEventListener('click', submitContactForm, true);
     }
 
 // création d'un patern pour que les emails soient valides
@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             var form = document.getElementById('registration-form');
             form.submit();
-            alert("pas d'erreurs");
         } else {
             return false;
         }
@@ -241,8 +240,7 @@ function compte_a_rebours() {
         if (minutes == 0) {
             minutes = '';
             mot_minute = '';
-        } else if (minutes == 1)
-        {
+        } else if (minutes == 1) {
             mot_minute = "minute,";
         } else if (minutes == 1) {
             mot_minute = "minute,";

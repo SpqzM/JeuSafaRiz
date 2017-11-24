@@ -13,11 +13,10 @@ class participationsManager
     //Ajouter une participation
     public function addParticipation(Participations $participation)
     {
-        $requete = $this->db->prepare('INSERT INTO participations (DATEPARTICIPATION, IDLOT, IDPARTICIPANT, RESULTAT)'
-            . 'VALUES(NOW(), :idlot, :idparticipant, :resultat)');
+        $requete = $this->db->prepare('INSERT INTO participations (DATEPARTICIPATION, IDLOT, IDPARTICIPANT)'
+            . 'VALUES(NOW(), :idlot, :idparticipant)');
         $requete->bindValue(':idlot', $participation->getIdLot());
         $requete->bindValue(':idparticipant', $participation->getIdParticipant());
-        $requete->bindValue(':resultat', $participation->getResultat());
         $requete->execute();
         return $this->db->lastInsertId();
     }

@@ -27,7 +27,8 @@ class participantsManager
     }
 
     // Verifie qu'un participant n'existe pas déjà
-    public function participantExists($email){
+    public function participantExists($email)
+    {
         $requete = 'SELECT EMAIL FROM participants
                   WHERE EMAIL = :email';
         $result = $this->db->prepare($requete);
@@ -50,5 +51,17 @@ class participantsManager
         $result->execute();
         return $result->fetch();
     }
+
+    // information participant connecte
+    public function participantCnx($id)
+    {
+        $requete = 'SELECT * FROM participants WHERE ID = :id';
+        $result = $this->db->prepare($requete);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        var_dump($result->fetch());
+        return $result->fetch();
+    }
+
 }
 
