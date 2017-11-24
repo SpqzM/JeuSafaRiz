@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (contactRegistration) {
-        contactRegistration.addEventListener('click', submitContactForm, true);
+        contactRegistration.addEventListener('submit', submitContactForm, true);
     }
 
 // création d'un patern pour que les emails soient valides

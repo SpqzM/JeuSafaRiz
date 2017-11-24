@@ -11,7 +11,6 @@ $ParticipantManager = new participantsManager($db);
 
 $erreur = "";
 $is_valid = false;
-
 // Si on a un formulaire validé
 if (!empty($_POST)) {
     $is_valid = true;
@@ -23,8 +22,9 @@ if (!empty($_POST)) {
     $cp = isset($_POST['cp']) ? $_POST['cp'] : null;
     $ville = isset($_POST['ville']) ? $_POST['ville'] : null;
     $adresse = isset($_POST['adresse']) ? $_POST['adresse'] : null;
-    $telephone = isset($_POST['tel']) ? $_POST['tel'] : null;
+    $telephone = (isset($_POST['tel'])&& $_POST['tel'] != "") ? $_POST['tel'] : null;
     $password = isset($_POST['mdp']) ? $_POST['mdp'] : null;
+
 
     // Contrôle de saisie php
     $unwanted_array = array('Š' => 'S', 'š' => 's', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E',
@@ -37,13 +37,20 @@ if (!empty($_POST)) {
 
     $flagSyntaxeCode_postal = preg_match('#[0-9]{5}$#', $cp);
     if ($flagSyntaxeCode_postal == 0 || empty($cp)) {
-        $erreur .= "Rentrez un code postal à 5 chiffres. <br>";
+        $erreur .= "Veuillez entrer un code postal à 5 chiffres. <br>";
         $is_valid = false;
     }
-    $flagSyntaxeTel = preg_match('#[0-9]{10}$#', $telephone);
-    if ($flagSyntaxeTel == 0 || empty($telephone)) {
-        $erreur .= "Rentrez un numéro de téléphone à 10 chiffres. <br>";
+    $flagSyntaxeVille = preg_match('#[^0-9]$#', $ville);
+    if ($flagSyntaxeCode_postal == 0 || empty($ville)) {
+        $erreur .= "Votre ville ne peut comporter de chiffres. <br>";
         $is_valid = false;
+    }
+    if (!is_null($telephone)){
+        $flagSyntaxeTel = preg_match('#[0-9]{10}$#', $telephone);
+        if ($flagSyntaxeTel == 0) {
+            $erreur .= "Veuillez entrer un numéro de téléphone à 10 chiffres. <br>";
+            $is_valid = false;
+        }
     }
     $flagSyntaxeNom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $nom);
     if ($flagSyntaxeNom == 0 || empty($nom)) {
@@ -75,7 +82,7 @@ if ($is_valid) {
         'adresse' => $_SESSION['adresse'],
         'cp' => $_SESSION['cp'],
         'ville' => $_SESSION['ville'],
-        'telephone' => $_SESSION['tel'],
+        'telephone' => $telephone,
         'email' => $_SESSION['email'],
         'mdp' => $_SESSION['mdp']));
 
@@ -89,7 +96,7 @@ if ($is_valid) {
         header("Location: resultat.php");
     } else {
         // Sinon message d'erreur
-        $erreur .= " Vous êtes déjà inscrit. Veuillez vous connecter";
+        $erreur .= 'Vous êtes déjà inscrit. Veuillez <a href="connexionParticipant.php">vous connecter</a><br>';
     }
 }
 

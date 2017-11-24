@@ -60,7 +60,8 @@
                         </div>
                         <div class="col-md-12">
                             <span id="feedback"></span>
-                            <div class="btn btn-form pull-right" id="btnContact">Envoyer</div>
+                            <input type="submit" class="btn btn-form pull-right" id="btnContact"
+                                   value="Envoyer"/>
                         </div>
                     </div>
                 </form>
@@ -78,21 +79,24 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) &&
     $email = $_POST['email'];
     $sujet = $_POST['sujet'];
     $texte = $_POST['texte'];
-    $telephone = $_POST['tel'];
+    $telephone = (isset($_POST['tel'])&& $_POST['tel'] != "") ? $_POST['tel'] : null;
 
 
     // Contrôle de saisie php
 
 
-    $flagSyntaxeTel = preg_match('#[^0-9]{10}$#', $_POST['tel']);
-    if ($flagSyntaxeTel = 0) {
-        echo "Rentrez un numéro de téléphone à 10 chiffres ";
+    if (!is_null($telephone)){
+        $flagSyntaxeTel = preg_match('#[0-9]{10}$#', $telephone);
+        if ($flagSyntaxeTel == 0) {
+            $erreur .= "Veuillez entrer un numéro de téléphone à 10 chiffres. <br>";
+            $is_valid = false;
+        }
     }
-    $flagSyntaxenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['nom']);
+    $flagSyntaxenom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $_POST['nom']);
     if ($flagSyntaxenom = 0) {
         echo "Votre nom ne peut comportez que des lettres, tirets et espaces";
     }
-    $flagSyntaxeprenom = preg_match('#[^a-zA-Z\S\-]{48}$#', $_POST['prenom']);
+    $flagSyntaxeprenom = preg_match('#[^0-9][a-zA-Z\S\-]{1,}$#', $_POST['prenom']);
     if ($flagSyntaxenom = 0) {
         echo "Votre prénom ne peut comportez que des lettres, tirets et espaces";
     }
