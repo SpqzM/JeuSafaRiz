@@ -13,7 +13,7 @@ include '../Views/head.php';
             <div class="boxed-grey" id="reglement">
                 <h3>Réglement du jeu Safa'Riz</h3>                    
                 <h6>ARTICLE 1- SOCIETE ORGNISATRICE</h6>
-                <p>La "Société Organisatrice", organise du 06/11/2017 (0h01) au 13/11/2017 (23h59) inclus,
+                <p>La "Société Organisatrice", organise du 21/11/2017 (0h01) au 28/11/2017 (23h59) inclus,
                     en France métropolitaine, Corse comprise, un jeu sans obligation d'achat, "Jeu Safariz",
                     ci après "le Jeu" .</p>
                 <h6>ARTICLE 2- PARTICIPATION</h6>

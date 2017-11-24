@@ -59,7 +59,6 @@ class participantsManager
         $result = $this->db->prepare($requete);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
-        var_dump($result->fetch());
         return $result->fetch();
     }
 
